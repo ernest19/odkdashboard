@@ -1,0 +1,744 @@
+<div class="row">
+    <div class=" col-md-4">
+        <div class="card bg-c-green update-card">
+            <div class="card-block">
+                <div class="row align-items-end">
+                    <div class="col-8">
+                        <h4 class="text-white">{{totalResponse_Postsurvey}}</h4>
+                        <h6 class="text-white m-b-0">Total Responses</h6>
+                    </div>
+                    <div class="col-4 text-right">
+                        <canvas id="update-chart-1" height="50"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" col-md-4">
+        <div class="card table-card">
+            <div class="card-header">
+                <h5>What is your Level of Education?</h5>
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                        <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li>
+            <li><i class="feather icon-trash-2 close-card"></i></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
+                <div id="container211"></div>
+                <p class="highcharts-description">
+                </p>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class=" col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="col-md-10">Should Government increase the threshold (minimum amount) from Ghc 100?</h5>
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                        <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+                        <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
+                <div id="sales-analytics1" style="">
+                    <div id="container311"></div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+<div class="row">
+    <div class=" col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="col-md-10">Was there enough publicity about today’s Town Hall Meeting?</h5>
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
+                <div id="sales-analytics1" style="">
+                    <div id="container590"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="col-md-10">Are You Engaged in Any Economic Activity?</h5>
+                <div class="card-header-right">
+                </div>
+            </div>
+            <div class="card-block">
+                <div id="sales-analytics1" style="">
+                    <div id="container611"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="col-md-10">Should the Government reduce the 1.75% rate allotted for the e-levy tax?</h5>
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
+                <div id="sales-analytics1" style="height: ">
+                    <div id="container411"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>What type of Economic activity are you Engaged in?</h5>
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
+                <div id="sales-analytics1" style="">
+                    <div id="container100"></div>
+                    <div id="button-bar">
+                        <button id="small" class="btn btn-success btn-sm">Small</button>
+                        <button id="large" class="btn btn-info btn-sm">Large</button>
+                        <button id="auto" class="btn btn-secondary btn-sm">Auto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>If you did, has it changed your perception about the e-levy?</h5>
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
+                <div id="sales-analytics1" style="height: ">
+                    <div id="container623"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Has there been enough sensitization on the e-levy?</h5>
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
+                <div id="sales-analytics1" style="height: ">
+                    <div id="container879"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+
+
+
+
+{% block js %}  
+
+<script>
+  // ///////Are You Engaged in Any Economic Activity?
+  Highcharts.chart('container611', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: ''
+  },
+  xAxis: {
+    categories: [{% for i in anyEconomy_p %}'{{i.engaged_in_any_economy}}',{% endfor %}]
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: ''
+    }
+  },
+  legend: {
+    reversed: true
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal'
+    }
+  },
+  series: [{
+    name: 'Percentages',
+    data: [{% for i in anyEconomy_p %}Math.round(({{i.id__count}}/{{totalResponse_Postsurvey}})*100),{% endfor %}]
+  }  
+  ]
+});
+
+ 
+  //////////////
+  //// What type of Economic activity are you Engaged in?
+  var chart = Highcharts.chart('container100', {
+
+chart: {
+  type: 'column'
+},
+
+title: {
+  text: ''
+},
+
+subtitle: {
+  text: 'Resize the frame or click buttons to change appearance'
+},
+
+legend: {
+  align: 'right',
+  verticalAlign: 'middle',
+  layout: 'vertical'
+},
+
+xAxis: {
+  categories: ['Activity'],
+  labels: {
+    x: -10
+  }
+},
+
+yAxis: {
+  allowDecimals: false,
+  title: {
+    text: 'Amount'
+  }
+},
+plotOptions: {
+       series: {
+            dataLabels: {
+                enabled: true,
+                format: '{y} %'
+            }
+        },
+            enableMouseTracking: false
+        
+    },
+series: [
+  {% for s in engagedActivity_p %}
+{
+  name: '{{s.economic_activity_engaged_in}}',
+  data: [Math.round(({{s.id__count}}/{{totalResponse_Postsurvey}})*100)]
+},
+{% endfor %}
+ ],
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
+    },
+    chartOptions: {
+      legend: {
+        align: 'center',
+        verticalAlign: 'bottom',
+        layout: 'horizontal'
+      },
+      yAxis: {
+        labels: {
+          align: 'left',
+          x: 0,
+          y: -5
+        },
+        title: {
+          text: null
+        }
+      },
+      subtitle: {
+        text: null
+      },
+      credits: {
+        enabled: false
+      }
+    }
+  }]
+}
+});
+
+document.getElementById('small').addEventListener('click', function () {
+chart.setSize(400);
+});
+
+document.getElementById('large').addEventListener('click', function () {
+chart.setSize(600);
+});
+
+document.getElementById('auto').addEventListener('click', function () {
+chart.setSize(null);
+});
+
+////////////
+
+//////////////What is your Level of Education?
+Highcharts.chart('container211', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: ''
+  },
+  xAxis: {
+    categories: [{% for i in educationlevel_p %}'{{i.education_level}}',{% endfor %}]
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: ''
+    }
+  },
+  legend: {
+    reversed: true
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal'
+    }
+  },
+  series: [{
+    name: 'Percentages',
+    data: [{% for i in educationlevel_p %}Math.round(({{i.id__count}}/{{totalResponse_Postsurvey}})*100),{% endfor %}]
+  }  
+  ]
+});
+
+
+
+// /////////////////////////////
+
+// ////////////////Should Government increase the threshold (minimum amount) from Ghc 100?
+// var chart = Highcharts.chart('container311', {
+
+// chart: {
+//   type: 'column'
+// },
+
+// title: {
+//   text: ''
+// },
+
+// subtitle: {
+//   text: 'Resize the frame or click buttons to change appearance'
+// },
+
+// legend: {
+//   align: 'right',
+//   verticalAlign: 'middle',
+//   layout: 'vertical'
+// },
+
+// xAxis: {
+//   categories: ['Decision'],
+//   labels: {
+//     x: -10
+//   }
+// },
+
+// yAxis: {
+//   allowDecimals: false,
+//   title: {
+//     text: 'Amount'
+//   }
+// },
+// plotOptions: {
+//        series: {
+//             dataLabels: {
+//                 enabled: true,
+//                 format: '{y} %'
+//             }
+//         },
+//             enableMouseTracking: false
+        
+//     },
+// series: [
+//   {% for s in should_government_increase_the_threshold %}
+// {
+//   name: '{{s.should_government_increase_the_threshold}}',
+//   data: [Math.round(({{s.id__count}}/{{totalResponse_Postsurvey}})*100)]
+// },
+// {% endfor %}
+//  ],
+
+// responsive: {
+//   rules: [{
+//     condition: {
+//       maxWidth: 500
+//     },
+//     chartOptions: {
+//       legend: {
+//         align: 'center',
+//         verticalAlign: 'bottom',
+//         layout: 'horizontal'
+//       },
+//       yAxis: {
+//         labels: {
+//           align: 'left',
+//           x: 0,
+//           y: -5
+//         },
+//         title: {
+//           text: null
+//         }
+//       },
+//       subtitle: {
+//         text: null
+//       },
+//       credits: {
+//         enabled: false
+//       }
+//     }
+//   }]
+// }
+// });
+
+
+
+$('#container311').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['yellow','red', 'green'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in should_government_increase_the_threshold %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : [ 'yellow','red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in should_government_increase_the_threshold %}'{{i.should_government_increase_the_threshold}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+
+// ///////Should the Government reduce the 1.75% rate allotted for the e-levy tax?<
+  var chart = Highcharts.chart('container411', {
+
+chart: {
+  type: 'column'
+},
+
+title: {
+  text: ''
+},
+
+subtitle: {
+  text: 'Resize the frame or click buttons to change appearance'
+},
+
+legend: {
+  align: 'right',
+  verticalAlign: 'middle',
+  layout: 'vertical'
+},
+
+xAxis: {
+  categories: ['Decision'],
+  labels: {
+    x: -10
+  }
+},
+
+yAxis: {
+  allowDecimals: false,
+  title: {
+    text: 'Amount'
+  }
+},
+plotOptions: {
+       series: {
+            dataLabels: {
+                enabled: true,
+                format: '{y} %'
+            }
+        },
+            enableMouseTracking: false
+        
+    },
+series: [
+  {% for s in should_the_government_reduce_elevy_tax %}
+{
+  name: '{{s.should_the_government_reduce_elevy_tax}}',
+  data: [Math.round(({{s.id__count}}/{{totalResponse_Postsurvey}})*100)]
+},
+{% endfor %}
+ ],
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
+    },
+    chartOptions: {
+      legend: {
+        align: 'center',
+        verticalAlign: 'bottom',
+        layout: 'horizontal'
+      },
+      yAxis: {
+        labels: {
+          align: 'left',
+          x: 0,
+          y: -5
+        },
+        title: {
+          text: null
+        }
+      },
+      subtitle: {
+        text: null
+      },
+      credits: {
+        enabled: false
+      }
+    }
+  }]
+}
+});
+
+document.getElementById('small').addEventListener('click', function () {
+chart.setSize(400);
+});
+
+document.getElementById('large').addEventListener('click', function () {
+chart.setSize(600);
+});
+
+document.getElementById('auto').addEventListener('click', function () {
+chart.setSize(null);
+});
+
+
+
+// Was there enough publicity about today’s Town Hall Meeting?
+Highcharts.chart('container590', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: ''
+  },
+  xAxis: {
+    categories: [{% for i in enough_publicity_about_today_Town_Hall_Meeting %}'{{i.enough_publicity_about_today_Town_Hall_Meeting}}',{% endfor %}]
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: ''
+    }
+  },
+  legend: {
+    reversed: true
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal'
+    }
+  },
+  series: [{
+    name: 'Percentages',
+    data: [{% for i in enough_publicity_about_today_Town_Hall_Meeting %}Math.round(({{i.id__count}}/{{totalResponse_Postsurvey}})*100),{% endfor %}]
+  }  
+  ]
+});
+
+
+
+
+// If you did, has it changed your perception about the e-levy?
+Highcharts.chart('container623', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: ''
+  },
+  xAxis: {
+    categories: [{% for i in changed_your_perception_about_the_elevy %}'{{i.changed_your_perception_about_the_elevy}}',{% endfor %}]
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: ''
+    }
+  },
+  legend: {
+    reversed: true
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal'
+    }
+  },
+  series: [{
+    name: 'Percentages',
+    data: [{% for i in changed_your_perception_about_the_elevy %}Math.round(({{i.id__count}}/{{totalResponse_Postsurvey}})*100),{% endfor %}]
+  }  
+  ]
+});
+
+
+// Has there been enough sensitization on the e-levy?
+var chart = Highcharts.chart('container879', {
+
+chart: {
+  type: 'column'
+},
+
+title: {
+  text: ''
+},
+
+subtitle: {
+  text: 'Resize the frame or click buttons to change appearance'
+},
+
+legend: {
+  align: 'right',
+  verticalAlign: 'middle',
+  layout: 'vertical'
+},
+
+xAxis: {
+  categories: ['Decision'],
+  labels: {
+    x: -10
+  }
+},
+
+yAxis: {
+  allowDecimals: false,
+  title: {
+    text: 'Amount'
+  }
+},
+plotOptions: {
+       series: {
+            dataLabels: {
+                enabled: true,
+                format: '{y} %'
+            }
+        },
+            enableMouseTracking: false
+        
+    },
+series: [
+  {% for s in has_there_been_enough_sensitization %}
+{
+  name: '{{s.has_there_been_enough_sensitization}}',
+  data: [Math.round(({{s.id__count}}/{{totalResponse_Postsurvey}})*100)]
+},
+{% endfor %}
+ ],
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
+    },
+    chartOptions: {
+      legend: {
+        align: 'center',
+        verticalAlign: 'bottom',
+        layout: 'horizontal'
+      },
+      yAxis: {
+        labels: {
+          align: 'left',
+          x: 0,
+          y: -5
+        },
+        title: {
+          text: null
+        }
+      },
+      subtitle: {
+        text: null
+      },
+      credits: {
+        enabled: false
+      }
+    }
+  }]
+}
+});
+
+document.getElementById('small').addEventListener('click', function () {
+chart.setSize(400);
+});
+
+document.getElementById('large').addEventListener('click', function () {
+chart.setSize(600);
+});
+
+document.getElementById('auto').addEventListener('click', function () {
+chart.setSize(null);
+});
+
+  
+</script>
+{% endblock js %}

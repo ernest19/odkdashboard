@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard </title>
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="#">
+    <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="author" content="#">
+    <link rel="icon" href="files/assets/images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/portal/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/portal/assets/icon/feather/css/feather.css">
+    <link rel="stylesheet" type="text/css" href="/static/portal/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/portal/assets/css/jquery.mCustomScrollbar.css">
+	<script src='https://cdn.plot.ly/plotly-2.11.1.min.js'></script>
+
+    {% block css %}
+    {% endblock  %}
+</head>
+
+<body>
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a class="mobile-menu" id="mobile-collapse" href="#!">
+                            <i class="feather icon-menu"></i>
+                        </a>
+                       <!--  <a href="/">
+                   otherFields         <img class="img-fluid" src="/static/portal/assets/images/logo.png" alt="Theme-Logo" />
+                        </a> -->
+                        <a class="mobile-options">
+                            <i class="feather icon-more-horizontal"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-container">
+                        <ul class="nav-left">
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()">
+                                    <i class="feather icon-maximize full-screen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="user-profile header-notification">
+                                <div class="dropdown-primary dropdown">
+                                    <div class="dropdown-toggle" data-toggle="dropdown">
+                                        <img src="/static/portal/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                        <span>Welcome</span>
+                                        <i class="feather icon-chevron-down"></i>
+                                    </div>
+                                    <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                        <li>
+                                            <a href="#!">
+                                                <i class="feather icon-settings"></i> Settings
+                                            </a>
+                                        </li>
+                                        <!-- <li>
+                                            <a href="default/user-profile.html">
+                                                <i class="feather icon-user"></i> Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="default/email-inbox.html">
+                                                <i class="feather icon-mail"></i> My Messages
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="default/auth-lock-screen.html">
+                                                <i class="feather icon-lock"></i> Lock Screen
+                                            </a>
+                                        </li> -->
+                                        <li>
+                                            <a href="default/auth-normal-sign-in.html">
+                                                <i class="feather icon-log-out"></i> Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+             {% block body %}
+
+
+            {% endblock  %}
+            
+        </div>
+    </div>
+ 
+    <!-- <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
+    <script type="text/javascript" src="/static/portal/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/portal/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/portal/bower_components/popper.js/dist/umd/popper.min.js"></script>
+    <script type="text/javascript" src="/static/portal/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/portal/bower_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="/static/portal/bower_components/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="/static/portal/bower_components/chart.js/dist/Chart.js"></script>
+    <script src="/static/portal/assets/pages/widget/amchart/amcharts.js"></script>
+    <script src="/static/portal/assets/pages/widget/amchart/serial.js"></script>
+    <script src="/static/portal/assets/pages/widget/amchart/light.js"></script>
+    <script src="/static/portal/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="/static/portal/assets/js/SmoothScroll.js"></script>
+    <script src="/static/portal/assets/js/pcoded.min.js"></script>
+    <script src="/static/portal/assets/js/vartical-layout.min.js"></script>
+    <!-- <script type="text/javascript" src="/static/portal/assets/pages/dashboard/custom-dashboard.js"></script> -->
+    <script type="text/javascript" src="/static/portal/assets/js/script.min.js"></script>
+
+
+
+    {% block js %}
+  
+    {% endblock  %}
+
+</body>
+
+</html>
