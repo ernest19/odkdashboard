@@ -1,3 +1,4 @@
+{% load humanize %}
 <!doctype html>
 
 <html class="no-js" lang="">
@@ -110,14 +111,10 @@
                                 <div class="main_home_slider text-center">
                                     <div class="single_home_slider">
                                         <div class="main_home wow fadeInUp" data-wow-duration="700ms">
-                                            <h4>{{today}}</h4>
+                                            <h4>{{message.date | safe }}</h4>
                                             <h3>WELCOME TO INFORMATION SERVICE DEPARMENT DASHBOARD</h3>
                                             <div class="separator"></div>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the industry's
-                                                standard dummy text ever since the 1500s, when an unknown printer took a
-                                                galley
-                                                of type and scrambled it to make a type specimen book.</p>
+                                            <p>{{message.message | safe}}</p>
                                             <div class="home_btn">
                                                 <a href="/dashboard/" class="btn btn-lg m_t_10">ENTER DASHBOARD</a>
                                                 
@@ -182,56 +179,22 @@
                 <div class="row">
                     <div class="main_feature text-center">
 
-                        <div class="col-sm-3">
-                            <div class="single_feature">
-                                <div class="single_feature_icon">
-                                   <i class="fa fa-question-circle" aria-hidden="true"></i>
-                                </div>
-
-                                <h4>Questionaire 1</h4>
-                                <div class="separator3"></div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting let.
-                                    Lorem Ipsum has been the industry.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="single_feature">
-                                <div class="single_feature_icon">
-                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
-                                </div>
-
-                                <h4>Questionaire 2</h4>
-                                <div class="separator3"></div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting let.
-                                    Lorem Ipsum has been the industry.</p>
-                            </div>
-                        </div>
+                        {% for ques in quest %}
 
                         <div class="col-sm-3">
                             <div class="single_feature">
                                 <div class="single_feature_icon">
                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
                                 </div>
-                                <h4>Questionaire 3</h4>
+
+                                <h4>{{ques.title}}</h4>
                                 <div class="separator3"></div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting let.
-                                    Lorem Ipsum has been the industry.</p>
+                                <p>{{ques.description | safe}}</p>
                             </div>
                         </div>
 
-                        <div class="col-sm-3">
-                            <div class="single_feature">
-                                <div class="single_feature_icon">
-                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
-                                </div>
+                        {% endfor %}
 
-                                <h4>Questionaire 4</h4>
-                                <div class="separator3"></div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting let.
-                                    Lorem Ipsum has been the industry.</p>
-                            </div>
-                        </div>
 
                     </div>
                 </div>

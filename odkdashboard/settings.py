@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.humanize",
     'portal',
     'import_export',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -76,16 +78,6 @@ WSGI_APPLICATION = 'odkdashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'NewOdkDb', 
-#         'USER': 'postgres', 
-#         'PASSWORD': 'Walson23*',
-#         'HOST': 'localhost', 
-#         'PORT': '5432',
-#     }
-# }
 
 DATABASES = {
     'default': {

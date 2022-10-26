@@ -1,5 +1,5 @@
 from django.db import models
-
+from ckeditor.fields import RichTextField
 # Create your models here.``
 class preSurvey(models.Model):#Questionaire3A
 	region = models.CharField(max_length=2000,null=True,blank=True) #Region	
@@ -116,5 +116,12 @@ class Questionaire4(models.Model):
 	delay_in_issuance_Ghana_card_affected_Sim_registration = models.CharField(max_length=2000,null=True,blank=True)#Do you think the delay in the issuance of the Ghana card has affected the Sim card registration?	CONTACT OF RESPONDENT (OPTIONAL
 
 
+class welcomeMessage(models.Model):
+	message =  RichTextField()
+	date=models.DateField(null=True,blank=True)
 
+
+class QuestionaireInfo(models.Model):
+	title = models.CharField(max_length=2000,null=True,blank=True)
+	description =  RichTextField()
 

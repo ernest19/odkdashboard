@@ -10,6 +10,18 @@ from django.contrib.auth.decorators import login_required
 
 
 
+class welcomeMessageAdmin(admin.ModelAdmin):
+    list_display = ['message','date']
+    # search_fields = ['skill_fk','mentee']
+admin.site.register(welcomeMessage, welcomeMessageAdmin)
+
+
+
+class QuestionaireInfoAdmin(admin.ModelAdmin):
+    list_display = ['title','description']
+    # search_fields = ['skill_fk','mentee']
+admin.site.register(QuestionaireInfo, QuestionaireInfoAdmin)
+
 # class postSurveyResource(resources.ModelResource):
 
 # 	class Meta:

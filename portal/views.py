@@ -35,6 +35,11 @@ def landingPage(request):
 
 	today = date.today()
 	today =today.strftime("%B %d, %Y")
+
+	message=welcomeMessage.objects.all().latest('id')
+	quest=QuestionaireInfo.objects.all()
+	for aa in quest:
+		print(aa.title)
 	return render(request, 'portal/index.html',locals())
 
 
