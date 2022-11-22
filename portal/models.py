@@ -27,7 +27,8 @@ class preSurvey(models.Model):#Questionaire3A
 	entry_date = models.DateTimeField(auto_now=False,null=True,blank=True)
 	created_date = models.DateTimeField(auto_now=True)
 
-	
+	class Meta:
+		verbose_name_plural = "Questionaire3A"
 	
 	
 
@@ -98,6 +99,9 @@ class postSurvey(models.Model):#Questionaire3B
 	contact_of_respondent = models.CharField(max_length=2000,null=True,blank=True)
 	entry_date = models.DateTimeField(auto_now=False,null=True,blank=True)
 	created_date = models.DateTimeField(auto_now=True)
+
+	class Meta:
+		verbose_name_plural = "Questionaire3B"
 
 
 

@@ -79,28 +79,28 @@ WSGI_APPLICATION = 'odkdashboard.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'mydb',
-#         'USER': 'postgres',
-#         'PASSWORD':'ds@2022',
-#         'HOST':'52.54.23.108', 
-#         'PORT':'5432',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'surveydb',
+        'NAME': 'mydb',
         'USER': 'postgres',
-        'PASSWORD':'isd@2022!',
-        'HOST':'localhost', 
+        'PASSWORD':'ds@2022',
+        'HOST':'52.54.23.108', 
         'PORT':'5432',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'surveydb',
+#         'USER': 'postgres',
+#         'PASSWORD':'isd@2022!',
+#         'HOST':'localhost', 
+#         'PORT':'5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
