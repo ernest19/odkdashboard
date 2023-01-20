@@ -1,0 +1,725 @@
+<style>
+  .highcharts-figure,
+  .highcharts-data-table table {
+    min-width: 320px;
+    max-width: 500px;
+    margin: 1em auto;
+  }
+
+  #container {
+    height: 400px;
+  }
+
+  .highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+  }
+
+  .highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+  }
+
+  .highcharts-data-table td,
+  .highcharts-data-table th,
+  .highcharts-data-table caption {
+    padding: 0.5em;
+  }
+
+  .highcharts-data-table thead tr,
+  .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+  .highcharts-data-table tr:hover {
+    background: #f1f7ff;
+  }
+
+#button-bar {
+  min-width: 310px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#container {
+  height: 400px;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 360px;
+  max-width: 600px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+</style>
+
+<!-- counts div -->
+  <div class=" col-md-8 p-0">
+    <div class="card bg-c-green update-card">
+      <div class="card-block">
+        <div class="row align-items-end">
+          <div class="col-12">
+            <h4 class="text-white m-b-0">{% if otherFields.0 != "Empty" %}{{otherFields.0}}{% else %}National{% endif %}
+              {% if otherFields.1 != "Empty" %}/{{otherFields.1}}{% endif %}</h4>
+              <div class="row">
+              <h5 class="text-white m-b-0 col-4">Female Responses: {{postsurveyMaleFemale.0.id__count}}</h5>
+              <h5 class="text-white m-b-0 col-4">Male Responses: {{postsurveyMaleFemale.1.id__count}}</h5>
+            <h5 class="text-white m-b-0 col-4">Total Responses: {{totalResponse_Postsurvey}}</h5>
+          </div>
+        </div>
+
+          <!-- <div class="col-4 text-right">
+            <canvas id="update-chart-1" height="50"></canvas>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- end -->
+
+<!-- Are You Engaged in Any Economic Activity? -->
+  <div class=" col-md-8 p-0">
+      <div id="container0111"></div>
+  </div>
+<!-- end -->
+
+<!-- What type of Economic activity are you Engaged in? -->
+<div class="col-md-8 p-0">
+      <div id="container0211"></div>
+</div>
+<!-- end -->
+
+<!-- What is your Level of Education? -->
+<div class="col-md-8 p-0">
+  <div id="container0311"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Awareness</strong></h5>
+Did you listen and understand the presentations made by the Finance Minister as well as other Government Officials on the e-levy?
+<div class="col-md-8 p-0">
+  <div id="container0411"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!-- If you did, has it changed your perception about the e-levy?-->
+<div class="col-md-8 p-0">
+  <div id="container0511"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+  <!-- support elevy? -->
+<div class="col-md-8 p-0">
+  <div id="container0711"></div>
+</div>
+<!-- end -->
+
+<!-- <h5><strong>Opinion</strong> </h5> -->
+ <!--Was there enough publicity about today’s Town Hall Meeting? -->
+ <!-- <div class="col-md-8 p-0">
+  <div id="container0811"></div>
+</div> -->
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!-- collection_elevy_help_govenment -->
+<div class="col-md-8 p-0">
+  <div id="container0911"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!-- enough_publicity_about_today_Town_Hall_Meeting-->
+<div class="col-md-8 p-0">
+  <div id="container0611"></div>
+</div>
+<!-- end -->
+
+
+
+{% block js %}  
+
+<script>
+  // ///////Are You Engaged in Any Economic Activity?
+var trace1 = {
+  x: ['Male','Female'],
+  y: [
+{% for i in anyEconomyMale1PS %}{% if i.0 == 'Yes' %}Math.round({{i.1}}){% endif %}{% endfor %},
+
+{% for s in anyEconomyFeMale1PS %}{% if s.0 == 'Yes' %}Math.round({{s.1}})*100){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['Male','Female'],
+  y: [
+  {% for i in anyEconomyMale1PS %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in anyEconomyFeMale1PS %}{% if i.0 == 'No' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var data = [trace1,trace2];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Sex'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'Are You Engaged in Any Economic Activity?'
+
+          };
+
+Plotly.newPlot('container0111', data, layout);
+/////////////////////////////
+
+
+///// What type of Economic activity are you Engaged in?
+var trace1 = {
+  x: ['Male','Female'],
+  y: [
+{% for i in engagedActivityMalePS %}{% if i.0 == 'Self-employed' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in engagedActivityFemalePS %}{% if i.0 == 'Self-employed' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+
+],
+  name: 'Self-Employed',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['Male','Female'],
+  y: [{% for i in engagedActivityMalePS %}{% if i.0 == 'Student' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in engagedActivityFemalePS %}{% if i.0 == 'Student' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Student',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['Male','Female'],
+  y: [{% for i in engagedActivityMalePS %}{% if i.0 == 'Public sector' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in engagedActivityFemalePS %}{% if i.0 == 'Public sector' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Public Sector',
+  type: 'bar',
+    marker: {
+      color: 'black'
+    }
+};
+
+var trace4 = {
+  x: ['Male','Female'],
+  y: [{% for i in engagedActivityMalePS %}{% if i.0 == 'Private sector' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in engagedActivityFemalePS %}{% if i.0 == 'Private sector' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Private Sector',
+  type: 'bar',
+    marker: {
+      color: 'yellow'
+    }
+};
+
+
+var trace5 = {
+  x: ['Male','Female'],
+  y: [{% for i in engagedActivityMalePS %}{% if i.0 == 'Not working' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in engagedActivityFemalePS %}{% if i.0 == 'Not working' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Not working',
+  type: 'bar',
+    marker: {
+      color: 'blue'
+    }
+};
+
+var data = [trace1,trace2,trace3,trace4,trace5];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Sex'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'What type of Economic activity are you Engaged in?'
+
+          };
+
+Plotly.newPlot('container0211', data, layout);
+
+///////////////////////////////////
+
+
+// What is your Level of Education? 
+var trace1 = {
+  x: ['Male','Female'],
+  y: [{% for i in educationlevelMalePS %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in educationlevelFemalePS %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'No Formal Education',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['Male','Female'],
+  y: [{% for i in educationlevelMalePS %}{% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in educationlevelFemalePS %}{% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'SHS',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['Male','Female'],
+  y: [{% for i in educationlevelMalePS %}{% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in educationlevelFemalePS %}{% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'JHS',
+  type: 'bar',
+    marker: {
+      color: 'black'
+    }
+};
+
+var trace4 = {
+  x: ['Male','Female'],
+  y: [{% for i in educationlevelMalePS %}{% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in educationlevelFemalePS %}{% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Postgraduate',
+  type: 'bar',
+    marker: {
+      color: 'yellow'
+    }
+};
+
+
+var trace5 = {
+  x: ['Male','Female'],
+  y: [{% for i in educationlevelMalePS %}{% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in educationlevelFemalePS %}{% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Tertiary',
+  type: 'bar',
+    marker: {
+      color: 'blue'
+    }
+};
+
+var data = [trace1,trace2,trace3,trace4,trace5];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Sex'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'What is your Level of Education?'
+          };
+
+Plotly.newPlot('container0311', data, layout);
+
+  ////////////
+
+
+// # Did you listen and understand the presentations made by the Finance Minister as well as other Government Officials on the e-levy?
+var trace1 = {
+  x: ['Male','Female'],
+  y: [{% for i in listen_n_understand_finance_ministerMale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in listen_n_understand_finance_ministerFemale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['Male','Female'],
+  y: [{% for i in listen_n_understand_finance_ministerMale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in listen_n_understand_finance_ministerFemale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['Male','Female'],
+  y: [{% for i in listen_n_understand_finance_ministerMale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in listen_n_understand_finance_ministerFemale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Indifference',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+
+var data = [trace1,trace2,trace3];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Sex'},
+       yaxis: {title: 'Percentage (%)'},
+        title: ''
+
+          };
+
+Plotly.newPlot('container0411', data, layout);
+////////////////////////////
+
+
+// If you did, has it changed your perception about the e-levy?
+var trace1 = {
+  x: ['Male','Female'],
+  y: [{% for i in changed_your_perception_about_the_elevyMale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in changed_your_perception_about_the_elevyFemale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['Male','Female'],
+  y: [{% for i in changed_your_perception_about_the_elevyMale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in changed_your_perception_about_the_elevyFemale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['Male','Female'],
+  y: [{% for i in changed_your_perception_about_the_elevyMale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in changed_your_perception_about_the_elevyFemale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Indifference',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Sex'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "If you did, has it changed your perception about the e-levy?"
+
+          };
+Plotly.newPlot('container0511', data, layout);
+////////////////////////////
+
+
+// think_the_Government_should_increase_the_threshold
+var trace1 = {
+  x: ['Male','Female'],
+  y: [{% for i in think_the_Government_should_increase_the_thresholdMale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in think_the_Government_should_increase_the_thresholdFemale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['Male','Female'],
+  y: [{% for i in think_the_Government_should_increase_the_thresholdMale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in think_the_Government_should_increase_the_thresholdFemale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['Male','Female'],
+  y: [{% for i in think_the_Government_should_increase_the_thresholdMale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in think_the_Government_should_increase_the_thresholdFemale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Sex'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "Do you think the Government should increase the threshold (minimum amount) from Ghc 100?"
+
+          };
+Plotly.newPlot('container0711', data, layout);
+////////////////////////////
+
+
+//  Should the Government reduce the 1.75% rate allotted for the e-levy tax?
+// var trace1 = {
+//   x: ['Male','Female'],
+//   y: [{% for i in should_the_government_reduce_elevy_taxMale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+// {% endfor %}
+// {% for i in should_the_government_reduce_elevy_taxFemale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+// {% endfor %}],
+//   name: 'Yes',
+//   type: 'bar',
+//     marker: {
+//       color: 'green'
+//     }
+//     }
+  
+// var trace2 = {
+//   x: ['Male','Female'],
+//   y: [{% for i in should_the_government_reduce_elevy_taxMale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+// {% endfor %}
+// {% for i in should_the_government_reduce_elevy_taxFemale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+// {% endfor %}],
+//   name: 'No',
+//   type: 'bar',
+//     marker: {
+//       color: 'red'
+//     }
+// };
+
+// var trace3 = {
+//   x: ['Male','Female'],
+//   y: [{% for i in should_the_government_reduce_elevy_taxMale %}{% if i.0 == 'Indifference' %}Math.round({{i.1}}),{% endif %}
+// {% endfor %}
+// {% for i in should_the_government_reduce_elevy_taxFemale %}{% if i.0 == 'Indifference' %}Math.round({{i.1}}),{% endif %}
+// {% endfor %}],
+//   name: 'Indifference',
+//   type: 'bar',
+//     marker: {
+//       color: '#67f'
+//     }
+// };
+
+// var data = [trace1,trace2,trace3];
+// var layout = {
+//         barmode: 'stack',
+//         xaxis: {title: 'Sex'},
+//        yaxis: {title: 'Percentage (%)'},
+//         title: "Should the Government reduce the 1.75% rate allotted for the e-levy tax?"
+
+//           };
+// Plotly.newPlot('container0811', data, layout);
+////////////////////////////
+
+
+
+// enough_sensitization_elevy
+var trace1 = {
+  x: ['Male','Female'],
+  y: [{% for i in enough_sensitization_elevyMale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in enough_sensitization_elevyFemale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['Male','Female'],
+  y: [{% for i in enough_sensitization_elevyMale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in enough_sensitization_elevyFemale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['Male','Female'],
+  y: [{% for i in enough_sensitization_elevyMale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in enough_sensitization_elevyFemale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Sex'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "Has there been enough sensitization on the e-levy? "
+
+          };
+Plotly.newPlot('container0911', data, layout);
+////////////////////////////
+
+
+
+// Was there enough publicity about today’s Town Hall Meeting?
+var trace1 = {
+  x: ['Male','Female'],
+  y: [{% for i in enough_publicity_about_today_Town_Hall_MeetingMale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_MeetingFemale %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['Male','Female'],
+  y: [{% for i in enough_publicity_about_today_Town_Hall_MeetingMale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_MeetingFemale %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['Male','Female'],
+  y: [{% for i in enough_publicity_about_today_Town_Hall_MeetingMale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_MeetingFemale %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}
+{% endfor %}],
+  name: 'Indifference',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Sex'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "Was there enough publicity about today’s Town Hall Meeting? "
+
+          };
+Plotly.newPlot('container0611', data, layout);
+////////////////////////////
+
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock js %}

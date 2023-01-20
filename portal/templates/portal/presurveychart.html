@@ -1,0 +1,1305 @@
+<style>
+  .highcharts-figure,
+  .highcharts-data-table table {
+    min-width: 320px;
+    max-width: 500px;
+    margin: 1em auto;
+  }
+
+  #container {
+    height: 400px;
+  }
+
+  .highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+  }
+
+  .highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+  }
+
+  .highcharts-data-table td,
+  .highcharts-data-table th,
+  .highcharts-data-table caption {
+    padding: 0.5em;
+  }
+
+  .highcharts-data-table thead tr,
+  .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+  .highcharts-data-table tr:hover {
+    background: #f1f7ff;
+  }
+
+#button-bar {
+  min-width: 310px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#container {
+  height: 400px;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+  min-width: 360px;
+  max-width: 600px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+  font-family: Verdana, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ebebeb;
+  margin: 10px auto;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.highcharts-data-table th {
+  font-weight: 600;
+  padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+  padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+</style>
+
+
+<div class="row">
+  <div class=" col-md-4">
+    <div class="card bg-c-yellow update-card">
+      <div class="card-block">
+        <div class="row align-items-end">
+          <div class="col-8">
+            <h4 class="text-white">{{totalResponse_Presurvey}}</h4>
+            <h6 class="text-white m-b-0">Total Responses</h6>
+          </div>
+          <div class="col-4 text-right">
+            <canvas id="update-chart-1" height="50"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card-footer">
+                <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update
+                    : 2:15 am</p>
+            </div> -->
+    </div>
+  </div>
+
+  <div class=" col-md-4">
+    <div class="card table-card">
+      <div class="card-header">
+        <h5>What is your Level of Education?</h5>
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li>
+            <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        
+          <div id="container2"></div>
+          <p class="highcharts-description">
+          </p>
+       
+      </div>
+    </div>
+  </div>
+
+  <div class=" col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="col-md-10">Are you aware of the Government’s decision to introduce the e-levy tax?</h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="">
+          
+            <div id="container3"></div>
+            
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class=" col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="col-md-10">Should the Government consider other areas of increasing the tax net instead of the
+          e-levy?</h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="">
+          
+            <div id="container5"></div>
+         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class=" col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>Are You Engaged in Any Economic Activity?</h5>
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="">
+          
+            <div id="container"></div>
+            <p class="highcharts-description">
+            
+            </p>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+   <div class=" col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="col-md-10">if yes, do you support Government’s decision to introduce the e-levy tax?</h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="height: ">
+          
+            <div id="container4"></div>
+            
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class=" col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="col-md-10">Do you think the e-levy will affect the businesses of mobile money vendors?</h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i> -->
+            <!-- </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="">
+          <div id="container6"></div>
+          
+       </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>What type of Economic activity are you Engaged in?</h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="">
+          
+            <div id="container1"></div>
+         
+          <div id="button-bar">
+            <button id="small" class="btn btn-success btn-sm">Small</button>
+            <button id="large" class="btn btn-info btn-sm">Large</button>
+            <button id="auto" class="btn btn-secondary btn-sm">Auto</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="col-md-10">Do you think the collection of the e-levy tax would help the Government achieve the
+        </h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="height: ">
+          
+            <div id="container7"></div>
+
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="col-md-10">In your opinion, do you see the e-levy tax as the best way to increase revenue for the
+        </h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="">
+
+
+        <div id="container8"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% block js %}  
+
+<script>
+  // ///////Are You Engaged in Any Economic Activity?
+ 
+
+//   Highcharts.chart('container', {
+//   chart: {
+//     type: 'bar'
+//   },
+//   title: {
+//     text: ''
+//   },
+//   xAxis: {
+//     categories: [{% for i in anyEconomy %}'{{i.engaged_in_any_economy}}',{% endfor %}]
+//   },
+//   yAxis: {
+//     min: 0,
+//     title: {
+//       text: ''
+//     }
+//   },
+//   legend: {
+//     reversed: true
+//   },
+//   plotOptions: {
+//     series: {
+//       stacking: 'normal'
+//     }
+//   },
+//   series: [{
+//     name: 'Percentages',
+//     data: [{% for i in anyEconomy %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}]
+//   }  
+//   ]
+// });
+
+
+
+$('#container').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                },
+                'series': {
+                    'stacking': 'normal'
+                  }
+            },
+            'legend': {
+                'reversed': true
+             },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green', 'yellow'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in supportElevy %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : ['yellow', 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in supportElevy %}'{{i.support_elevy_introduction}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+
+
+
+  ////////////
+  //// What type of Economic activity are you Engaged in?
+  var chart = Highcharts.chart('container1', {
+
+chart: {
+  type: 'column'
+},
+
+title: {
+  text: ''
+},
+
+subtitle: {
+  text: 'Resize the frame or click buttons to change appearance'
+},
+
+legend: {
+  align: 'right',
+  verticalAlign: 'middle',
+  layout: 'vertical'
+},
+
+xAxis: {
+  categories: ['Activity'],
+  labels: {
+    x: -10
+  }
+},
+
+yAxis: {
+  allowDecimals: false,
+  title: {
+    text: 'Percentage'
+  }
+},
+plotOptions: {
+       series: {
+            dataLabels: {
+                enabled: true,
+                format: '{y} %'
+            }
+        },
+            enableMouseTracking: false
+        
+    },
+
+series: [
+  {% for s in engagedActivity %}
+{
+  name: '{{s.economic_activity_engaged_in}}',
+  data: [Math.round(({{s.id__count}}/{{totalResponse_Presurvey}})*100)]
+},
+{% endfor %}
+ ],
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
+    },
+    chartOptions: {
+      legend: {
+        align: 'center',
+        verticalAlign: 'bottom',
+        layout: 'horizontal'
+      },
+      yAxis: {
+        labels: {
+          align: 'left',
+          x: 0,
+          y: -5
+        },
+        title: {
+          text: null
+        }
+      },
+      subtitle: {
+        text: null
+      },
+      credits: {
+        enabled: false
+      }
+    }
+  }]
+}
+});
+
+// document.getElementById('small').addEventListener('click', function () {
+// chart.setSize(400);
+// });
+
+// document.getElementById('large').addEventListener('click', function () {
+// chart.setSize(600);
+// });
+
+// document.getElementById('auto').addEventListener('click', function () {
+// chart.setSize(null);
+// });
+
+
+
+////////////
+
+//////////////What is your Level of Education?
+Highcharts.chart('container2', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: ''
+  },
+  xAxis: {
+    categories: [{% for i in educationlevel %}'{{i.education_level}}',{% endfor %}]
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: ''
+    }
+  },
+  legend: {
+    reversed: true
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal'
+    }
+  },
+  series: [
+
+  {
+    name: 'Percentages',
+    data: [{% for i in educationlevel %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}]
+  }  
+  ]
+});
+
+
+  $('#container3').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green', 'yellow'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in awareOfElevy %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : ['yellow', 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in awareOfElevy %}'{{i.aware_of_elevy_introduction}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+/////////////////////////////
+
+// ////////////////Are you aware of the Government’s decision to introduce the e-levy tax?
+// Highcharts.chart('container3', {
+//  chart : {
+//       'zoomType' : 'x',
+//       'type' : 'column',
+//       'width' : 400,
+//       'height' : 255,
+//       'spacingBottom' : 1,
+//       'style' : {
+//         'fontFamily' : 'sans-serif'
+//       }
+//     },
+//   title: {
+//     text: ''
+//   },
+//   xAxis: {
+//     categories: [{% for i in awareOfElevy %}'{{i.aware_of_elevy_introduction}}',{% endfor %}]
+//   },
+//   yAxis: {
+//     min: 0,
+//     title: {
+//       text: ''
+//     }
+//   },
+//   legend: {
+//     reversed: true
+//   },
+//   plotOptions: {
+//     series: {
+//       stacking: 'normal'
+//     }
+//   },
+//    colors : ['red', 'green', 'yellow'],
+//   series: [{
+//     name: 'Percentages',
+//     data: [{% for i in awareOfElevy %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+//     colors : ['yellow', 'red', 'green'],
+//   }  
+//   ]
+// });
+
+
+
+// ///////if yes, do you support Government’s decision to introduce the e-levy tax?
+// var chart = Highcharts.chart('container4', {
+
+// chart: {
+//   type: 'column'
+// },
+
+// title: {
+//   text: ''
+// },
+
+// subtitle: {
+//   text: 'Resize the frame or click buttons to change appearance'
+// },
+
+// legend: {
+//   align: 'right',
+//   verticalAlign: 'middle',
+//   layout: 'vertical'
+// },
+
+// xAxis: {
+//   categories: ['Decision'],
+//   labels: {
+//     x: -10
+//   }
+// },
+
+// yAxis: {
+//   allowDecimals: false,
+//   title: {
+//     text: 'Percentage'
+//   }
+// },
+// plotOptions: {
+//        series: {
+//             dataLabels: {
+//                 enabled: true,
+//                 format: '{y} %'
+//             }
+//         },
+//             enableMouseTracking: false
+        
+//     },
+
+// series: [
+//   {% for s in supportElevy %}
+// {
+//   name: '{{s.support_elevy_introduction}}',
+//   data: [Math.round(({{s.id__count}}/{{totalResponse_Presurvey}})*100)]
+// },
+// {% endfor %}
+//  ],
+
+// responsive: {
+//   rules: [{
+//     condition: {
+//       maxWidth: 500
+//     },
+//     chartOptions: {
+//       legend: {
+//         align: 'center',
+//         verticalAlign: 'bottom',
+//         layout: 'horizontal'
+//       },
+//       yAxis: {
+//         labels: {
+//           align: 'left',
+//           x: 0,
+//           y: -5
+//         },
+//         title: {
+//           text: null
+//         }
+//       },
+//       subtitle: {
+//         text: null
+//       },
+//       credits: {
+//         enabled: false
+//       }
+//     }
+//   }]
+// }
+// });
+
+
+
+
+$('#container4').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green', 'yellow'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in supportElevy %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : ['yellow', 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in supportElevy %}'{{i.support_elevy_introduction}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+
+
+
+
+
+// // Should the Government consider other areas of increasing the tax net instead of the e-levy?
+// var chart = Highcharts.chart('container5', {
+
+// chart: {
+//   type: 'column'
+// },
+
+// title: {
+//   text: ''
+// },
+
+// subtitle: {
+//   text: 'Resize the frame or click buttons to change appearance'
+// },
+
+// legend: {
+//   align: 'right',
+//   verticalAlign: 'middle',
+//   layout: 'vertical'
+// },
+
+// xAxis: {
+//   categories: ['Decision'],
+//   labels: {
+//     x: -10
+//   }
+// },
+
+// yAxis: {
+//   allowDecimals: false,
+//   title: {
+//     text: 'Percentage'
+//   }
+// },
+// plotOptions: {
+//        series: {
+//             dataLabels: {
+//                 enabled: true,
+//                 format: '{y} %'
+//             }
+//         },
+//             enableMouseTracking: false
+        
+//     },
+
+// series: [
+//   {% for s in shouldIncreaseElevy %}
+// {
+//   name: '{{s.should_government_increase_tax_or_elevy}}',
+//   data: [Math.round(({{s.id__count}}/{{totalResponse_Presurvey}})*100)]
+// },
+// {% endfor %}
+//  ],
+
+// responsive: {
+//   rules: [{
+//     condition: {
+//       maxWidth: 500
+//     },
+//     chartOptions: {
+//       legend: {
+//         align: 'center',
+//         verticalAlign: 'bottom',
+//         layout: 'horizontal'
+//       },
+//       yAxis: {
+//         labels: {
+//           align: 'left',
+//           x: 0,
+//           y: -5
+//         },
+//         title: {
+//           text: null
+//         }
+//       },
+//       subtitle: {
+//         text: null
+//       },
+//       credits: {
+//         enabled: false
+//       }
+//     }
+//   }]
+// }
+// });
+
+// document.getElementById('small').addEventListener('click', function () {
+// chart.setSize(400);
+// });
+
+// document.getElementById('large').addEventListener('click', function () {
+// chart.setSize(600);
+// });
+
+// document.getElementById('auto').addEventListener('click', function () {
+// chart.setSize(null);
+// });
+
+
+
+
+$('#container5').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green', 'yellow'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in shouldIncreaseElevy %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : ['yellow', 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in shouldIncreaseElevy %}'{{i.should_government_increase_tax_or_elevy}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+// // Do you think the e-levy will affect the businesses of mobile money vendors?
+// Highcharts.chart('container6', {
+//   chart: {
+//     type: 'bar'
+//   },
+//   title: {
+//     text: ''
+//   },
+//   xAxis: {
+//     categories: [{% for i in affectMomoBusiness %}'{{i.elevy_affect_momo_business}}',{% endfor %}]
+//   },
+//   yAxis: {
+//     min: 0,
+//     title: {
+//       text: ''
+//     }
+//   },
+//   legend: {
+//     reversed: true
+//   },
+//   plotOptions: {
+//     series: {
+//       stacking: 'normal'
+//     }
+//   },
+//   series: [{
+//     name: 'Percentages',
+//     data: [{% for i in affectMomoBusiness %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}]
+//   }  
+//   ]
+// });
+
+
+
+
+$('#container6').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green', 'yellow'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in affectMomoBusiness %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : ['yellow', 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in affectMomoBusiness %}'{{i.elevy_affect_momo_business}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+// ///Do you think the collection of the e-levy tax would help the Government achieve the
+// Highcharts.chart('container7', {
+//   chart: {
+//     type: 'bar'
+//   },
+//   title: {
+//     text: ''
+//   },
+//   xAxis: {
+//     categories: [{% for i in willCollectionHelp %}'{{i.collection_elevy_help_govenment}}',{% endfor %}]
+//   },
+//   yAxis: {
+//     min: 0,
+//     title: {
+//       text: ''
+//     }
+//   },
+//   legend: {
+//     reversed: true
+//   },
+//   plotOptions: {
+//     series: {
+//       stacking: 'normal'
+//     }
+//   },
+//   series: [{
+//     name: 'Percentages',
+//     data: [{% for i in willCollectionHelp %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}]
+//   }  
+//   ]
+// });
+
+
+
+
+
+$('#container7').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green', 'yellow'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in willCollectionHelp %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : ['yellow', 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in willCollectionHelp %}'{{i.collection_elevy_help_govenment}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+
+
+
+
+
+// ////In your opinion, do you see the e-levy tax as the best way to increase revenue for the
+var chart = Highcharts.chart('container8', {
+
+chart: {
+  type: 'column'
+},
+
+title: {
+  text: ''
+},
+
+subtitle: {
+  text: 'Resize the frame or click buttons to change appearance'
+},
+
+legend: {
+  align: 'right',
+  verticalAlign: 'middle',
+  layout: 'vertical'
+},
+
+xAxis: {
+  categories: ['Decision'],
+  labels: {
+    x: -10
+  }
+},
+
+yAxis: {
+  allowDecimals: false,
+  title: {
+    text: 'Percentage'
+  }
+},
+plotOptions: {
+       series: {
+            dataLabels: {
+                enabled: true,
+                format: '{y} %'
+            }
+        },
+            enableMouseTracking: false
+        
+    },
+
+series: [
+  {% for s in yourOpinionIncrease %}
+{
+  name: '{{s.ur_opinion_elevey_increase_revenue}}',
+  data: [Math.round(({{s.id__count}}/{{totalResponse_Presurvey}})*100)]
+},
+{% endfor %}
+ ],
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
+    },
+    chartOptions: {
+      legend: {
+        align: 'center',
+        verticalAlign: 'bottom',
+        layout: 'horizontal'
+      },
+      yAxis: {
+        labels: {
+          align: 'left',
+          x: 0,
+          y: -5
+        },
+        title: {
+          text: null
+        }
+      },
+      subtitle: {
+        text: null
+      },
+      credits: {
+        enabled: false
+      }
+    }
+  }]
+}
+});
+
+
+
+$('#container8').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green', 'yellow'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in yourOpinionIncrease %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : ['yellow', 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in yourOpinionIncrease %}'{{i.ur_opinion_elevey_increase_revenue}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+
+
+
+</script>
+
+{% endblock js %}

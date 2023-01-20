@@ -1,0 +1,796 @@
+<style>
+  
+</style>
+
+<!-- counts div -->
+  <div class=" col-md-8 p-0">
+    <div class="card bg-c-green update-card">
+      <div class="card-block">
+        <div class="row align-items-end">
+          <div class="col-12">
+            <h4 class="text-white m-b-0">{% if otherFields.0 != "Empty" %}{{otherFields.0}}{% else %}National{% endif %}
+              {% if otherFields.1 != "Empty" %}/{{otherFields.1}}{% endif %}</h4>
+              <div class="row">
+            <h5 class="text-white m-b-0 col-4">Female Responses: {{postsurveyMaleFemale.0.id__count}}</h5>
+            <h5 class="text-white m-b-0 col-4">Male Responses: {{postsurveyMaleFemale.1.id__count}}</h5>
+            <h5 class="text-white m-b-0 col-4">Total Responses: {{totalResponse_Postsurvey}}</h5>
+          </div>
+          </div>
+          <!-- <div class="col-4 text-right">
+            <canvas id="update-chart-1" height="50"></canvas>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- end -->
+
+<!-- Are You Engaged in Any Economic Activity? -->
+  <div class=" col-md-8 p-0">
+      <div id="container0111A"></div>
+  </div>
+<!-- end -->
+
+<!-- What type of Economic activity are you Engaged in? -->
+<div class="col-md-8 p-0">
+      <div id="container0211A"></div>
+</div>
+<!-- end -->
+
+
+<!-- What LEVEL OF EDUCATION-->
+<div class="col-md-8 p-0">
+  <div id="container0311A"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Awareness</strong></h5>
+Did you listen and understand the presentations made by the Finance Minister as well as other Government Officials on the e-levy?
+<div class="col-md-8 p-0">
+  <div id="container0411A"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!-- If you did, has it changed your perception about the e-levy?-->
+<div class="col-md-8 p-0">
+  <div id="container0511A"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+  <!-- support decision -->
+<div class="col-md-8 p-0">
+  <div id="container0711A"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Awareness</strong></h5>
+ <!--Was there enough publicity about today’s Town Hall Meeting? -->
+ <div class="col-md-8 p-0">
+  <div id="container0811A"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!-- collection_elevy_help_govenment-->
+<div class="col-md-8 p-0">
+  <div id="container0911A"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!-- Should the Government consider other areas of increasing the tax net instead of the e-levy?-->
+<div class="col-md-8 p-0">
+  <div id="container0611A"></div>
+</div>
+<!-- end -->
+
+
+
+{% block js %}  
+
+<script>
+  // ///////Are You Engaged in Any Economic Activity?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+{% for i in anyEconomyAge1PS %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge2PS %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge3PS %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge4PS %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge5PS %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge6PS %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge7PS %}{% if i.0 == 'Yes' %}Math.round({{i.1}}){% endif %}{% endfor %}
+
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+{% for i in anyEconomyAge1PS %}{% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge2PS %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge3PS %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge4PS %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge5PS %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge6PS %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in anyEconomyAge7PS %} {% if i.0 == 'No' %}Math.round({{i.1}}){% endif %}{% endfor %}
+
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var data = [trace1,trace2];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'Are You Engaged in Any Economic Activity?'
+
+          };
+
+Plotly.newPlot('container0111A', data, layout);
+/////////////////////////////
+
+
+///// What type of Economic activity are you Engaged in?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1PS %}{% if i.0 == 'Not working' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity2PS %} {% if i.0 == 'Not working' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity3PS %} {% if i.0 == 'Not working' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity4PS %} {% if i.0 == 'Not working' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity5PS %} {% if i.0 == 'Not working' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity6PS %} {% if i.0 == 'Not working' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity7PS %} {% if i.0 == 'Not working' %}Math.round({{i.1}}){% endif %}{% endfor %}
+
+],
+  name: 'Not working',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1PS %}{% if i.0 == 'Private sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity2PS %} {% if i.0 == 'Private sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity3PS %} {% if i.0 == 'Private sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity4PS %} {% if i.0 == 'Private sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity5PS %} {% if i.0 == 'Private sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity6PS %} {% if i.0 == 'Private sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity7PS %} {% if i.0 == 'Private sector' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Private Sector',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1PS %}{% if i.0 == 'Public sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity2PS %} {% if i.0 == 'Public sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity3PS %} {% if i.0 == 'Public sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity4PS %} {% if i.0 == 'Public sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity5PS %} {% if i.0 == 'Public sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity6PS %} {% if i.0 == 'Public sector' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity7PS %} {% if i.0 == 'Public sector' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Public Sector',
+  type: 'bar',
+    marker: {
+      color: 'black'
+    }
+};
+
+var trace4 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1PS %}{% if i.0 == 'Self-employed' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity2PS %} {% if i.0 == 'Self-employed' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity3PS %} {% if i.0 == 'Self-employed' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity4PS %} {% if i.0 == 'Self-employed' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity5PS %} {% if i.0 == 'Self-employed' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity6PS %} {% if i.0 == 'Self-employed' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity7PS %} {% if i.0 == 'Self-employed' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Self-employed',
+  type: 'bar',
+    marker: {
+      color: 'yellow'
+    }
+};
+
+
+var trace5 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1PS %}{% if i.0 == 'Student' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity2PS %} {% if i.0 == 'Student' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity3PS %} {% if i.0 == 'Student' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity4PS %} {% if i.0 == 'Student' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity5PS %} {% if i.0 == 'Student' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity6PS %} {% if i.0 == 'Student' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in engagedActivity7PS %} {% if i.0 == 'Student' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Student',
+  type: 'bar',
+    marker: {
+      color: 'blue'
+    }
+};
+
+var data = [trace1,trace2,trace3,trace4,trace5];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'What type of Economic activity are you Engaged in?'
+
+          };
+
+Plotly.newPlot('container0211A', data, layout);
+
+///////////////////////////////////
+
+
+
+///// What is your level of education
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+{% for i in education_level1PS %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level2PS %} {% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level3PS %} {% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level4PS %} {% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level5PS %} {% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level6PS %} {% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level7PS %} {% if i.0 == 'No formal education' %}Math.round({{i.1}}){% endif %}{% endfor %}
+
+
+],
+  name: 'No formal education',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in education_level1Q %}{% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level2PS %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level3PS %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level4PS %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level5PS %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level6PS %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level7PS %} {% if i.0 == 'JHS' %}Math.round({{i.1}}){% endif %}{% endfor %}
+
+],
+  name: 'JHS',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+  
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in education_level1Q %}{% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level2PS %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level3PS %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level4PS %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level5PS %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level6PS %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level7PS %} {% if i.0 == 'SHS' %}Math.round({{i.1}}){% endif %}{% endfor %}
+
+
+],
+  name: 'SHS',
+  type: 'bar',
+    marker: {
+      color: 'yellow'
+    }
+};
+
+  
+var trace4 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in education_level1PS %}{% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level2PS %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level3PS %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level4PS %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level5PS %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level6PS %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level7PS %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}){% endif %}{% endfor %}
+
+
+],
+  name: 'Post-graduate',
+  type: 'bar',
+    marker: {
+      color: 'black'
+    }
+};
+  
+var trace5 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in education_level1PS %}{% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level2PS %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level3PS %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level4PS %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level5PS %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level6PS %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in education_level7PS %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}
+
+
+
+],
+  name: 'Tertiary',
+  type: 'bar',
+    marker: {
+      color: 'brown'
+    }
+};
+
+
+var data = [trace1,trace2,trace3,trace4,trace5];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'What is your level of education'
+
+          };
+
+Plotly.newPlot('container0311A', data, layout);
+
+///////////////////////////////////
+
+
+
+// # Did you listen and understand the presentations made by the Finance Minister as well as other Government Officials on the e-levy?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in listen_n_understand_finance_minister1 %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister2 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister3 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister4 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister5 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister6 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister7 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in listen_n_understand_finance_minister1 %}{% if i.0 == 'No' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister2 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister3 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister4 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister5 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister6 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister7 %} {% if i.0 == 'No' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in listen_n_understand_finance_minister1 %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister2 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister3 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister4 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister5 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister6 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in listen_n_understand_finance_minister7 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+
+var data = [trace1,trace2,trace3];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'Did you listen and understand the presentations made by the Finance Minister as well as other Government Officials on the e-levy?'
+
+          };
+
+Plotly.newPlot('container0411A', data, layout);
+
+
+
+////////////////////////////
+
+
+// If you did, has it changed your perception about the e-levy?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in changed_your_perception_about_the_elevy1 %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy2 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy3 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy4 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy5 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy6 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy7 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in changed_your_perception_about_the_elevy1 %}{% if i.0 == 'No' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy2 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy3 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy4 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy5 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy6 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy7 %} {% if i.0 == 'No' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in changed_your_perception_about_the_elevy1 %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy2 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy3 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy4 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy5 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy6 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in changed_your_perception_about_the_elevy7 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "If you did, has it changed your perception about the e-levy?"
+
+          };
+Plotly.newPlot('container0511A', data, layout);
+////////////////////////////
+
+
+// think_the_Government_should_increase_the_threshold
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in should_government_increase_the_threshold1 %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold2 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold3 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold4 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold5 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold6 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold7 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in should_government_increase_the_threshold1 %}{% if i.0 == 'No' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold2 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold3 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold4 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold5 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold6 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold7 %} {% if i.0 == 'No' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in should_government_increase_the_threshold1 %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold2 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold3 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold4 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold5 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold6 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_government_increase_the_threshold7 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "Do you think the Government should increase the threshold (minimum amount) from Ghc 100?"
+
+          };
+Plotly.newPlot('container0711A', data, layout);
+////////////////////////////
+
+
+
+//  Should the Government reduce the 1.75% rate allotted for the e-levy tax?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in should_the_government_reduce_elevy_tax1 %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax2 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax3 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax4 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax5 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax6 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax7 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in should_the_government_reduce_elevy_tax1 %}{% if i.0 == 'No' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax2 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax3 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax4 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax5 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax6 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax7 %} {% if i.0 == 'No' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in should_the_government_reduce_elevy_tax1 %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax2 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax3 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax4 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax5 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax6 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in should_the_government_reduce_elevy_tax7 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category?'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "Should the Government reduce the 1.75% rate allotted for the e-levy tax?"
+
+          };
+Plotly.newPlot('container0811A', data, layout);
+////////////////////////////
+
+
+
+//collection_elevy_help_govenment
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in has_there_been_enough_sensitization1 %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization2 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization3 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization4 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization5 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization6 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization7 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in has_there_been_enough_sensitization1 %}{% if i.0 == 'No' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization2 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization3 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization4 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization5 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization6 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization7 %} {% if i.0 == 'No' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in has_there_been_enough_sensitization1 %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization2 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization3 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization4 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization5 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization6 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in has_there_been_enough_sensitization7 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "Has there been enough sensitization on the e-levy? "
+
+          };
+Plotly.newPlot('container0911A', data, layout);
+////////////////////////////
+
+
+
+// Was there enough publicity about today’s Town Hall Meeting?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in enough_publicity_about_today_Town_Hall_Meeting1 %}{% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting2 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting3 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting4 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting5 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting6 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting7 %} {% if i.0 == 'Yes' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in enough_publicity_about_today_Town_Hall_Meeting1 %}{% if i.0 == 'No' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting2 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting3 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting4 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting5 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting6 %} {% if i.0 == 'No' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting7 %} {% if i.0 == 'No' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in enough_publicity_about_today_Town_Hall_Meeting1 %}{% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting2 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting3 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting4 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting5 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting6 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in enough_publicity_about_today_Town_Hall_Meeting7 %} {% if i.0 == 'Indifferent' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "Was there enough publicity about today’s Town Hall Meeting? "
+
+          };
+Plotly.newPlot('container0611A', data, layout);
+////////////////////////////
+
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock js %}

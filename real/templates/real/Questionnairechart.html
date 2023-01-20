@@ -1,0 +1,701 @@
+
+
+<div class="row">
+  <div class=" col-md-4">
+    <div class="card bg-c-blue update-card">
+      <div class="card-block">
+        <div class="row align-items-end">
+          <div class="col-8">
+            <h4 class="text-white">{{totalResponse_questionnaire}}</h4>
+            <h6 class="text-white m-b-0">Total Responses</h6>
+          </div>
+          <div class="col-4 text-right">
+            <canvas id="update-chart-1" height="50"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card-footer">
+                <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>update
+                    : 2:15 am</p>
+            </div> -->
+    </div>
+    </div>
+  <div class=" col-md-4">
+
+    <div class="card table-card">
+      <div class="card-header">
+        <h5>What is your Level of Education?</h5>
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li>
+            <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+       
+          <div id="container21"></div>
+          <p class="highcharts-description">
+          </p>
+       
+      </div>
+    </div>
+    </div>
+  <div class=" col-md-4">
+ 
+    <div class="card">
+      <div class="card-header">
+        <h5 class="col-md-10">Do you think it is a call in the right direction?</h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="">
+         
+            <div id="container31"></div>
+            
+         
+        </div>
+      </div>
+    </div>
+    </div>
+    
+</div>
+
+<div class="row">
+
+  <div class=" col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>Are You Engaged in Any Economic Activity?</h5>
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="">
+         
+            <div id="container11"></div>
+            <p class="highcharts-description">
+            
+            </p>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="col-md-10">Are you aware of the suspension of the referendum?</h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="height: ">
+         
+            <div id="container41"></div>
+            
+         </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>What type of Economic activity are you Engaged in?</h5>
+
+        <div class="card-header-right">
+          <ul class="list-unstyled card-option">
+            <!-- <li><i class="feather icon-maximize full-card"></i></li>
+            <li><i class="feather icon-minus minimize-card"></i>
+            </li> -->
+            <!-- <li><i class="feather icon-trash-2 close-card"></i></li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="card-block">
+        <div id="sales-analytics1" style="">
+         
+            <div id="container10"></div>
+         
+         <!--  <div id="button-bar">
+            <button id="small" class="btn btn-success btn-sm">Small</button>
+            <button id="large" class="btn btn-info btn-sm">Large</button>
+            <button id="auto" class="btn btn-secondary btn-sm">Auto</button>
+          </div></div> -->
+      </div>
+    </div>
+
+  
+    
+  </div>
+
+</div>
+
+
+
+
+{% block js %}  
+
+<script>
+  // ///////Are You Engaged in Any Economic Activity?
+//   Highcharts.chart('container11', {
+//   chart: {
+//     type: 'bar'
+//   },
+//   title: {
+//     text: ''
+//   },
+//   xAxis: {
+//     categories: [{% for i in anyEconomy_q %}'{{i.engaged_in_any_economy}}',{% endfor %}]
+//   },
+//   yAxis: {
+//     min: 0,
+//     title: {
+//       text: ''
+//     }
+//   },
+//   legend: {
+//     reversed: true
+//   },
+//   plotOptions: {
+//     series: {
+//       stacking: 'normal'
+//     }
+//   },
+//   series: [{
+//     name: 'Percentages',
+//     data: [{% for i in anyEconomy_q %}Math.round(({{i.id__count}}/{{totalResponse_questionnaire}})*100),{% endfor %}]
+//   }  
+//   ]
+// });
+ 
+
+
+
+
+$('#container11').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in anyEconomy_q %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : [ 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in anyEconomy_q %}'{{i.engaged_in_any_economy}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+
+
+
+
+
+  //////////////
+  //// What type of Economic activity are you Engaged in?
+  var chart = Highcharts.chart('container10', {
+
+chart: {
+  type: 'column'
+},
+
+title: {
+  text: ''
+},
+
+subtitle: {
+  text: 'Resize the frame or click buttons to change appearance'
+},
+
+legend: {
+  align: 'right',
+  verticalAlign: 'middle',
+  layout: 'vertical'
+},
+
+xAxis: {
+  categories: ['Activity'],
+  labels: {
+    x: -10
+  }
+},
+
+yAxis: {
+  allowDecimals: false,
+  title: {
+    text: 'Percentage'
+  }
+},
+plotOptions: {
+       series: {
+            dataLabels: {
+                enabled: true,
+                format: '{y} %'
+            }
+        },
+            enableMouseTracking: false
+        
+    },
+series: [
+  {% for s in engagedActivity_q %}
+{
+  name: '{{s.economic_activity_engaged_in}}',
+  data: [Math.round(({{s.id__count}}/{{totalResponse_questionnaire}})*100)]
+},
+{% endfor %}
+ ],
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
+    },
+    chartOptions: {
+      legend: {
+        align: 'center',
+        verticalAlign: 'bottom',
+        layout: 'horizontal'
+      },
+      yAxis: {
+        labels: {
+          align: 'left',
+          x: 0,
+          y: -5
+        },
+        title: {
+          text: null
+        }
+      },
+      subtitle: {
+        text: null
+      },
+      credits: {
+        enabled: false
+      }
+    }
+  }]
+}
+});
+
+document.getElementById('small').addEventListener('click', function () {
+chart.setSize(400);
+});
+
+document.getElementById('large').addEventListener('click', function () {
+chart.setSize(600);
+});
+
+document.getElementById('auto').addEventListener('click', function () {
+chart.setSize(null);
+});
+
+////////////
+
+//////////////What is your Level of Education?
+var chart = Highcharts.chart('container21', {
+
+chart: {
+  type: 'column'
+},
+
+title: {
+  text: ''
+},
+
+subtitle: {
+  text: 'Resize the frame or click buttons to change appearance'
+},
+
+legend: {
+  align: 'right',
+  verticalAlign: 'middle',
+  layout: 'vertical'
+},
+
+xAxis: {
+  categories: ['Decision'],
+  labels: {
+    x: -10
+  }
+},
+
+yAxis: {
+  allowDecimals: false,
+  title: {
+    text: 'Percentage'
+  }
+},
+plotOptions: {
+       series: {
+            dataLabels: {
+                enabled: true,
+                format: '{y} %'
+            }
+        },
+            enableMouseTracking: false
+        
+    },
+series: [
+  {% for s in educationlevel_q %}
+{
+  name: '{{s.education_level}}',
+  data: [Math.round(({{s.id__count}}/{{totalResponse_questionnaire}})*100)]
+},
+{% endfor %}
+ ],
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
+    },
+    chartOptions: {
+      legend: {
+        align: 'center',
+        verticalAlign: 'bottom',
+        layout: 'horizontal'
+      },
+      yAxis: {
+        labels: {
+          align: 'left',
+          x: 0,
+          y: -5
+        },
+        title: {
+          text: null
+        }
+      },
+      subtitle: {
+        text: null
+      },
+      credits: {
+        enabled: false
+      }
+    }
+  }]
+}
+});
+
+// document.getElementById('small').addEventListener('click', function () {
+// chart.setSize(400);
+// });
+
+// document.getElementById('large').addEventListener('click', function () {
+// chart.setSize(600);
+// });
+
+// document.getElementById('auto').addEventListener('click', function () {
+// chart.setSize(null);
+// });
+// /////////////////////////////
+
+// ////////////////Do you think it is a call in the right direction?
+// var chart = Highcharts.chart('container31', {
+
+// chart: {
+//   type: 'column'
+// },
+
+// title: {
+//   text: ''
+// },
+
+// subtitle: {
+//   text: 'Resize the frame or click buttons to change appearance'
+// },
+
+// legend: {
+//   align: 'right',
+//   verticalAlign: 'middle',
+//   layout: 'vertical'
+// },
+
+// xAxis: {
+//   categories: ['Decision'],
+//   labels: {
+//     x: -10
+//   }
+// },
+
+// yAxis: {
+//   allowDecimals: false,
+//   title: {
+//     text: 'Percentage'
+//   }
+// },
+// plotOptions: {
+//        series: {
+//             dataLabels: {
+//                 enabled: true,
+//                 format: '{y} %'
+//             }
+//         },
+//             enableMouseTracking: false
+        
+//     },
+// series: [
+//   {% for s in do_u_think_is_ryt_direction %}
+// {
+//   name: '{{s.do_u_think_is_ryt_direction}}',
+//   data: [Math.round(({{s.id__count}}/{{totalResponse_questionnaire}})*100)]
+// },
+// {% endfor %}
+//  ],
+
+// responsive: {
+//   rules: [{
+//     condition: {
+//       maxWidth: 500
+//     },
+//     chartOptions: {
+//       legend: {
+//         align: 'center',
+//         verticalAlign: 'bottom',
+//         layout: 'horizontal'
+//       },
+//       yAxis: {
+//         labels: {
+//           align: 'left',
+//           x: 0,
+//           y: -5
+//         },
+//         title: {
+//           text: null
+//         }
+//       },
+//       subtitle: {
+//         text: null
+//       },
+//       credits: {
+//         enabled: false
+//       }
+//     }
+//   }]
+// }
+// });
+
+// document.getElementById('small').addEventListener('click', function () {
+// chart.setSize(400);
+// });
+
+// document.getElementById('large').addEventListener('click', function () {
+// chart.setSize(600);
+// });
+
+// document.getElementById('auto').addEventListener('click', function () {
+// chart.setSize(null);
+// });
+
+
+
+
+
+$('#container31').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green', 'yellow'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in do_u_think_is_ryt_direction %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : ['yellow', 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in do_u_think_is_ryt_direction %}'{{i.do_u_think_is_ryt_direction}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+
+
+// ///////iAre you aware of the suspension of the referendum?
+Highcharts.chart('container41', {
+  chart: {
+    type: 'bar'
+  },
+  title: {
+    text: ''
+  },
+  xAxis: {
+    categories: [{% for i in aware_of_suspension_of_the_referendum %}'{{i.aware_of_suspension_of_the_referendum}}',{% endfor %}]
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: ''
+    }
+  },
+  legend: {
+    reversed: true
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal'
+    }
+  },
+  series: [{
+    name: 'Percentages',
+    data: [{% for i in aware_of_suspension_of_the_referendum %}Math.round(({{i.id__count}}/{{totalResponse_questionnaire}})*100),{% endfor %}]
+  }  
+  ]
+});
+
+
+
+
+
+
+$('#container41').highcharts({
+    
+    
+    'plotOptions': {
+                'column': {
+                    'colorByPoint': true //need to become true for color bar.
+                }
+            },
+             'title': {
+                  text: ''
+                },
+            //you can list color at here or with series both are valid
+            'colors' : ['red', 'green', 'yellow'],
+    'chart' : {
+      'zoomType' : 'x',
+      'type' : 'column',
+      // 'width' : 400,
+      // 'height' : 255,
+      // 'spacingBottom' : 1,
+      'style' : {
+        'fontFamily' : 'sans-serif'
+      }
+    },
+    
+    'name' : 'Percentages',
+    'series' : [{
+        'name' : 'Percentage',
+        'data' : [{% for i in aware_of_suspension_of_the_referendum %}Math.round(({{i.id__count}}/{{totalResponse_Presurvey}})*100),{% endfor %}],
+        'colors' : ['yellow', 'red', 'green'],
+      }
+    ],
+    'xAxis' : {
+      'categories' : [{% for i in aware_of_suspension_of_the_referendum %}'{{i.aware_of_suspension_of_the_referendum}}',{% endfor %}]
+      
+    },
+     yAxis: {
+        title: {
+            text: 'Percentage'
+        }
+    },
+    
+    'legend' : {
+      'enabled' : false
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</script>
+{% endblock js %}

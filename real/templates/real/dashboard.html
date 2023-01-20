@@ -1,0 +1,329 @@
+{% extends "portal/base.html" %}
+{% load static %}
+{% block style %}
+{% endblock %}
+{% block body %}
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <nav class="pcoded-navbar">
+            <div class="pcoded-inner-navbar main-menu">
+                <ul class="">
+                    <!-- <li class="">
+                                    <span for="inputState" class="text-center text-white mb-1"><h5 class="text-center">Age Range</h5> </span>
+                                    <div class="p-2">
+                                        <input type="range" class="custom-range" min="8"
+                                        max="60" id="rangeInput" 
+                                        oninput="maxAge.value=this.value" />
+                                    </div>
+                                  
+                                <div class="form-row col-md-12">
+                                    <div class="form-group col">
+                                        <span><h6 class="text-center text-white">From</h6></span>
+                                        <input id="minAge" class="form-control min1"
+                                            placeholder="" min="8"
+                                            max="60" type="number" value="8"  />
+                                    </div>
+                                    <div class="form-group text-right col">
+                                        <span><h6 class="text-center text-white">To</h6></span>
+                                        <input class="form-control max1" onkeyup="rangeInput.value=this.value"
+                                            id="maxAge" placeholder="{{max_age}}" type="number" value="8" min="8" max="60"/>
+                                    </div>
+                                </div>
+                                </li> -->
+                    <!-- <div class=""> -->
+                    <!-- <button id="Apply" type="button" class="btn btn-block btn-primary p-2 mb-2 " onclick="runfilter()">Filter Age</button> -->
+                    <!-- </div> -->
+                    <li class="">
+                        <div class="form-group px-2">
+                            <span for="inputState" class="text-white mb-1">
+                                <h5 class="text-center">Region</h5>
+                            </span>
+                            <select id="inputRegion" class="form-control col-md-12 filter" onChange="changeRegion()">
+                                <option selected value="Empty">Choose...</option>
+                                {% for s in allRegions %}
+                                <option>{{s.region}}</option>
+                               
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="form-group px-2">
+                            <span for="inputState" class="text-center text-white mb-1">
+                                <h5 class="text-center">District</h5>
+                            </span>
+                            <select id="inputDistrict" class="form-control col-md-12 filter" onChange="runfilter()">
+                                <option selected value="Empty">Choose...</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="form-group px-2">
+                            <span for="inputState" class="text-center text-white mb-1">
+                                <h5 class="text-center">Indicators</h5>
+                            </span>
+                            <select id="inputState" class="form-control col-md-12 filter" onChange="runfilter()">
+                                <option selected>Sex</option>
+                                <option>Age</option>
+                                <option>Education</option>
+                            </select>
+                        </div>
+                    </li>
+
+                    <li class="">
+                        <div class="form-group px-2">
+                            <span for="inputState" class="text-center text-white mb-1">
+                                <h5 class="text-center">Questionnaire</h5>
+                            </span>
+                            <select id="showDiv" class="form-control col-md-12 filter" value="" onChange="changeQues()">
+                                <option selected value="1" href="home">Questionnaire 1</option>
+                                <option value="2" href="profile">Questionnaire 2</option>
+                                <option value="3a" href="contact">Questionnaire 3A</option>
+                                <option value="3b" href="contact1">Questionnaire 3B</option>
+                                <option value="4" href="contact2">Questionnaire 4</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <div class="main-body">
+                    <div class="page-wrapper pt-0">
+                        <div id="cocn"></div>
+                        <div class="page-body" id="nav">
+                            <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                                <li class="nav-item one " role="presentation">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">QUESTIONNAIRE 1</a>
+                                </li>
+                                <li class="nav-item  two d-none " role="presentation">
+                                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"> QUESTIONNAIRE 2</a>
+                                </li>
+                                <li class="nav-item  threeA d-none " role="presentation">
+                                    <a class="nav-link active"  id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">QUESTIONNAIRE 3A</a>
+                                </li>
+                                <li class="nav-item  threeB d-none" role="presentation">
+                                    <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact1" role="tab" aria-controls="contact" aria-selected="false">QUESTIONNAIRE 3B</a>
+                                </li>
+                                <li class="nav-item  four d-none " role="presentation">
+                                    <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact" aria-selected="false">QUESTIONNAIRE 4</a>
+                                </li>
+                            </ul>
+                            <!-- first tab -->
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active p-2" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div id="questionnaire1Div">
+                                        <div class="d-flex justify-content-center ">
+                                            <div class="spinner-border  d-none" role="status" style="">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- second tab -->
+                                <div class="tab-pane fade  p-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div id="questionnaire2Div">
+                                        <div class="d-flex justify-content-center ">
+                                            <div class="spinner-border  d-none" role="status" style="">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- third tab -->
+                                <div class="tab-pane fade  p-2" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div id="Questionnaire3ADiv">
+                                        <div class="d-flex justify-content-center ">
+                                            <div class="spinner-border  d-none" role="status" style="">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade  p-2" id="contact1" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div id="Questionnaire3BDiv">
+                                        <div class="d-flex justify-content-center ">
+                                            <div class="spinner-border  d-none" role="status" style="">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade  p-2" id="contact2" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div id="questionnaire4Div">
+                                        <div class="d-flex justify-content-center ">
+                                            <div class="spinner-border  d-none" role="status" style="">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/modules/funnel.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/cylinder.js"></script>
+<script src="https://code.highcharts.com/modules/funnel3d.js"></script>
+<script src="https://code.highcharts.com/modules/pyramid3d.js"></script>
+<script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+<script>
+//// get charts
+$(document).ready(() => {
+    var otherFields = $('.filter').map(function() { return $(this).val() }).get();
+    var otherFields = otherFields.join()
+    console.log(otherFields)
+    $.ajax({
+        url: "/real/chartsPlot/",
+        data: { otherFields },
+        beforeSend: () => {
+            $(".loader").removeClass('d-none')
+        },
+        success: (res) => {
+            $(".loader").addClass('d-none')
+            $("#Questionnaire3ADiv").html(res.pre)
+            $("#questionnaire1Div").html(res.questionaire)
+            $("#Questionnaire3BDiv").html(res.post)
+            $("#questionnaire2Div").html(res.questionaire2)
+            $("#questionnaire4Div").html(res.questionaire4)
+
+        }
+    })
+})
+
+
+/////region on change
+function changeRegion() {
+    var region = $("#inputRegion").val()
+    console.log(region)
+    $.ajax({
+        type: "GET",
+        url: `/getDistricts/${region}/`,
+        success: (data) => {
+            $("#inputDistrict").html(data.alldistricts)
+        }
+    })
+    runfilter()
+}
+
+
+
+
+////// run filter
+function runfilter() {
+    // var _filterObj={};
+    // var minAge = $("#minAge").val();
+    // var maxAge = $("#maxAge").val();
+    // _filterObj.minPrice = _minAge;
+    // _filterObj.maxPrice = _maxAge;
+
+    
+    var otherFields = $('.filter').map(function() { return $(this).val() }).get();
+    var otherFields = otherFields.join()
+    console.log(otherFields)
+    // console.log(minAge)
+    // console.log(maxAge)
+
+    // Run Ajax
+    $.ajax({
+        url: '/real/chartsPlot/',
+        data: { otherFields },
+        // dataType:'json',
+        beforeSend: function() {
+            $(".ajaxLoader").show();
+        },
+        success: function(res) {
+            $("#Questionnaire3ADiv").html(res.pre)
+            $("#questionnaire1Div").html(res.questionaire)
+            $("#questionnaire2Div").html(res.questionaire2)
+            $("#questionnaire4Div").html(res.questionaire4)
+            $("#Questionnaire3BDiv").html(res.post)
+            // $("#listresult").html(res.data);
+            // $(".ajaxLoader").hide();
+        }
+    });
+}
+
+function changeQues(){
+    var a = $("#showDiv").val()
+    // console.log(a)
+    if(a == 2){
+        $(".one").addClass('d-none')
+        $(".threeA").addClass('d-none')
+        $(".threeB").addClass('d-none')
+        $(".four").addClass('d-none')
+        $("#home").addClass('d-none')
+        $("#contact").addClass('d-none')
+        $("#contact1").addClass('d-none')
+        $("#contact2").addClass('d-none')
+        $(".two").removeClass('d-none')
+        $("#profile").removeClass('d-none')
+        $("#profile").addClass('show active')
+
+    }else if(a == '3a'){
+        $(".one").addClass('d-none')
+        $(".threeA").removeClass('d-none')
+        $(".threeB").addClass('d-none')
+        $(".four").addClass('d-none')
+        $("#home").addClass('d-none')
+        $("#contact").removeClass('d-none')
+        $("#contact").addClass('show active')
+        $("#contact1").addClass('d-none')
+        $("#contact2").addClass('d-none')
+        $(".two").addClass('d-none')
+        $("#profile").addClass('d-none')
+    }else if(a == '3b'){
+        $(".one").addClass('d-none')
+        $(".threeA").addClass('d-none')
+        $(".threeB").removeClass('d-none')
+        $(".four").addClass('d-none')
+        $("#home").addClass('d-none')
+        $("#contact").addClass('d-none')
+        $("#contact1").removeClass('d-none')
+        $("#contact1").addClass('show active')
+        $("#contact2").addClass('d-none')
+        $(".two").addClass('d-none')
+        $("#profile").addClass('d-none')
+    }else if(a == 4){
+        $(".one").addClass('d-none')
+        $(".threeA").addClass('d-none')
+        $(".threeB").addClass('d-none')
+        $(".four").removeClass('d-none')
+        $("#home").addClass('d-none')
+        $("#contact").addClass('d-none')
+        $("#contact1").addClass('d-none')
+        $("#contact2").removeClass('d-none')
+        $("#contact2").addClass('show active')
+        $(".two").addClass('d-none')
+        $("#profile").addClass('d-none')
+    }else{
+        $(".one").removeClass('d-none')
+        $(".threeA").addClass('d-none')
+        $(".threeB").addClass('d-none')
+        $(".four").addClass('d-none')
+        $("#home").removeClass('d-none')
+        $("#home").addClass('show active')
+
+        $("#contact").addClass('d-none')
+        $("#contact1").addClass('d-none')
+        $("#contact2").addClass('d-none')
+        $(".two").addClass('d-none')
+        $("#profile").addClass('d-none')
+    }
+}
+</script>
+{% endblock %}

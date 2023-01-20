@@ -1,0 +1,500 @@
+
+<!-- counts div -->
+  <div class=" col-md-8 p-0">
+    <div class="card bg-c-blue update-card">
+      <div class="card-block">
+        <div class="row align-items-end">
+          <div class="col-12">
+            <h4 class="text-white m-b-0">{% if otherFields.0 != "Empty" %}{{otherFields.0}}{% else %}National{% endif %}
+              {% if otherFields.1 != "Empty" %}/{{otherFields.1}}{% endif %}</h4>
+              <div class="row">
+              <h5 class="text-white m-b-0 col-4">Female Responses: {{QuestionsMaleFemale.0.id__count}}</h5>
+            <h5 class="text-white m-b-0 col-4">Male Responses: {{QuestionsMaleFemale.1.id__count}}</h5>
+            <h5 class="text-white m-b-0 col-4">Total Responses: {{totalResponse_questionnaire}}</h5>
+          </div>
+        </div>
+          <!-- <div class="col-4 text-right">
+            <canvas id="update-chart-1" height="50"></canvas>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- end -->
+
+<!-- Are You Engaged in Any Economic Activity? -->
+  <div class=" col-md-8  p-0">
+      <div id="container011A"></div>
+  </div>
+<!-- end -->
+
+<!-- What type of Economic activity are you Engaged in? -->
+<div class="col-md-8 p-0">
+      <div id="container021A"></div>
+</div>
+<!-- end -->
+
+<!-- What is your level of education -->
+<div class="col-md-8 p-0">
+  <div id="container031A"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!--Do you think it is a call in the right direction?-->
+<div class="col-md-8 p-0">
+  <div id="container041A"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Awareness</strong></h5>
+<!-- Are you aware of the suspension of the referendum?-->
+<div class="col-md-8 p-0">
+  <div id="container051A"></div>
+</div>
+<!-- end -->
+
+
+{% block js %}  
+
+<script>
+  // ///////Are You Engaged in Any Economic Activity?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+{% for i in anyEconomyAge1Q %}{% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge2Q %}{% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge3Q %}{% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge4Q %}{% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge5Q %}{% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge6Q %}{% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge7Q %}{% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+{% for i in anyEconomyAge1Q %}{% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge2Q %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge3Q %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge4Q %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge5Q %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge6Q %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in anyEconomyAge7Q %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var data = [trace1,trace2];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'Are You Engaged in Any Economic Activity?'
+
+          };
+
+Plotly.newPlot('container011A', data, layout);
+/////////////////////////////
+
+
+///// What type of Economic activity are you Engaged in?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1Q %}{% if i.0 == 'NONE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity2Q %} {% if i.0 == 'NONE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity3Q %} {% if i.0 == 'NONE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity4Q %} {% if i.0 == 'NONE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity5Q %} {% if i.0 == 'NONE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity6Q %} {% if i.0 == 'NONE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity7Q %} {% if i.0 == 'NONE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Not working',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1Q %}{% if i.0 == 'PRIVATE SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity2Q %} {% if i.0 == 'PRIVATE SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity3Q %} {% if i.0 == 'PRIVATE SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity4Q %} {% if i.0 == 'PRIVATE SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity5Q %} {% if i.0 == 'PRIVATE SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity6Q %} {% if i.0 == 'PRIVATE SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity7Q %} {% if i.0 == 'PRIVATE SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Private Sector',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1Q %}{% if i.0 == 'PUBLIC SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity2Q %} {% if i.0 == 'PUBLIC SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity3Q %} {% if i.0 == 'PUBLIC SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity4Q %} {% if i.0 == 'PUBLIC SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity5Q %} {% if i.0 == 'PUBLIC SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity6Q %} {% if i.0 == 'PUBLIC SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity7Q %} {% if i.0 == 'PUBLIC SECTOR' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Public Sector',
+  type: 'bar',
+    marker: {
+      color: 'black'
+    }
+};
+
+var trace4 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1Q %}{% if i.0 == 'SELF EMPLOYED' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity2Q %} {% if i.0 == 'SELF EMPLOYED' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity3Q %} {% if i.0 == 'SELF EMPLOYED' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity4Q %} {% if i.0 == 'SELF EMPLOYED' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity5Q %} {% if i.0 == 'SELF EMPLOYED' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity6Q %} {% if i.0 == 'SELF EMPLOYED' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity7Q %} {% if i.0 == 'SELF EMPLOYED' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Self-employed',
+  type: 'bar',
+    marker: {
+      color: 'yellow'
+    }
+};
+
+
+var trace5 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1Q %}{% if i.0 == 'STUDENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity2Q %} {% if i.0 == 'STUDENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity3Q %} {% if i.0 == 'STUDENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity4Q %} {% if i.0 == 'STUDENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity5Q %} {% if i.0 == 'STUDENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity6Q %} {% if i.0 == 'STUDENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity7Q %} {% if i.0 == 'STUDENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Student',
+  type: 'bar',
+    marker: {
+      color: 'blue'
+    }
+};
+
+var trace6 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in engagedActivity1Q %}{% if i.0 == 'OTHERS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity2Q %} {% if i.0 == 'OTHERS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity3Q %} {% if i.0 == 'OTHERS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity4Q %} {% if i.0 == 'OTHERS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity5Q %} {% if i.0 == 'OTHERS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity6Q %} {% if i.0 == 'OTHERS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in engagedActivity7Q %} {% if i.0 == 'OTHERS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Others',
+  type: 'bar',
+    marker: {
+      color: 'indigo'
+    }
+};
+var data = [trace1,trace2,trace3,trace4,trace5,trace6];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'What type of Economic activity are you Engaged in?'
+
+          };
+
+Plotly.newPlot('container021A', data, layout);
+
+///////////////////////////////////
+
+
+///// What is your level of education
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+{% for i in education_level1Q %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level2Q %} {% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level3Q %} {% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level4Q %} {% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level5Q %} {% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level6Q %} {% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level7Q %} {% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+
+
+],
+  name: 'No formal education',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in education_level1Q %}{% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level2Q %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level3Q %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level4Q %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level5Q %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level6Q %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level7Q %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+
+],
+  name: 'JHS',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+  
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in education_level1Q %}{% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level2Q %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level3Q %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level4Q %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level5Q %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level6Q %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level7Q %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+
+
+],
+  name: 'SHS',
+  type: 'bar',
+    marker: {
+      color: 'yellow'
+    }
+};
+
+  
+var trace4 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in education_level1Q %}{% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level2Q %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level3Q %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level4Q %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level5Q %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level6Q %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level7Q %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+
+
+],
+  name: 'Post-graduate',
+  type: 'bar',
+    marker: {
+      color: 'black'
+    }
+};
+  
+var trace5 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in education_level1Q %}{% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level2Q %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level3Q %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level4Q %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level5Q %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level6Q %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in education_level7Q %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+
+
+
+],
+  name: 'Tertiary',
+  type: 'bar',
+    marker: {
+      color: 'brown'
+    }
+};
+
+
+var data = [trace1,trace2,trace3,trace4,trace5];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'What is your level of education'
+
+          };
+
+Plotly.newPlot('container031A', data, layout);
+
+///////////////////////////////////
+
+
+// Do you think it is a call in the right direction?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in do_u_think_is_ryt_direction1 %}{% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction2 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction3 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction4 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction5 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction6 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction7 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in do_u_think_is_ryt_direction1 %}{% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction2 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction3 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction4 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction5 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction6 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction7 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in do_u_think_is_ryt_direction1 %}{% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction2 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction3 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction4 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction5 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction6 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction7 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+
+var data = [trace1,trace2,trace3];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'Do you think it is a call in the right direction?'
+
+          };
+
+Plotly.newPlot('container041A', data, layout);
+////////////////////////////
+
+
+// Are you aware of the suspension of the referendum?
+var trace1 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in aware_of_suspension_of_the_referendum1 %}{% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum2 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum3 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum4 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum5 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum6 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum7 %} {% if i.0 == 'YES' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in aware_of_suspension_of_the_referendum1 %}{% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum2 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum3 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum4 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum5 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum6 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum7 %} {% if i.0 == 'NO' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['18 - 28','29 - 39','40 - 49','50 - 59','60+'],
+  y: [
+  {% for i in aware_of_suspension_of_the_referendum1 %}{% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum2 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum3 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum4 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum5 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum6 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum7 %} {% if i.0 == 'INDIFFERENT' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'Age_category'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "Are you aware of the suspension of the referendum?"
+
+          };
+Plotly.newPlot('container051A', data, layout);
+////////////////////////////
+
+
+
+
+
+
+</script>
+
+{% endblock js %}

@@ -1,0 +1,499 @@
+
+<!-- counts div -->
+  <div class=" col-md-8 p-0">
+    <div class="card bg-c-blue update-card">
+      <div class="card-block">
+        <div class="row align-items-end">
+          <div class="col-12">
+            <h4 class="text-white m-b-0">{% if otherFields.0 != "Empty" %}{{otherFields.0}}{% else %}National{% endif %}
+              {% if otherFields.1 != "Empty" %}/{{otherFields.1}}{% endif %}</h4>
+              <div class="row">
+              <h5 class="text-white m-b-0 col-4">Female Responses: {{Questions2MaleFemale.0.id__count}}</h5>
+              <h5 class="text-white m-b-0 col-4">Male Responses: {{Questions2MaleFemale.1.id__count}}</h5>
+            <h5 class="text-white m-b-0 col-4">Total Responses: {{totalResponse_questionnaire2}}</h5>
+          </div>
+        </div>
+          <!-- <div class="col-4 text-right">
+            <canvas id="update-chart-1" height="50"></canvas>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- end -->
+
+<!-- Are You Engaged in Any Economic Activity? -->
+  <div class=" col-md-8  p-0">
+      <div id="container011E2"></div>
+  </div>
+<!-- end -->
+
+<!-- What type of Economic activity are you Engaged in? -->
+<div class="col-md-8 p-0">
+      <div id="container021E2"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!--describe situation?-->
+<div class="col-md-8 p-0">
+  <div id="container041E2"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+If yes, do you think the easing of restrictions by the President is a call in the right direction?
+<div class="col-md-8 p-0">
+  <div id="container051E2"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!-- confidence-->
+<div class="col-md-8 p-0">
+  <div id="container061E2"></div>
+</div>
+<!-- end -- -->
+
+<h5><strong>Opinion</strong></h5>
+On a scale of 1-5, how would you rate government’s handling of the covid-19 response programme?
+<div class="col-md-8 p-0">
+  <div id="container071E2"></div>
+</div>
+<!-- end -- -->
+{% block js %}  
+
+<script>
+  // ///////Are You Engaged in Any Economic Activity?
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+{% for i in yesAnyEconomyEducationSheetQ2 %}{% if i.0 == 'No formal Education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in yesAnyEconomyEducationSheetQ2 %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in yesAnyEconomyEducationSheetQ2 %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in yesAnyEconomyEducationSheetQ2 %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in yesAnyEconomyEducationSheetQ2 %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}})
+{% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in noAnyEconomyEducationSheetQ2 %}{% if s.0 == 'No formal education' %}Math.round({{s.1}}),{% endif %}{% endfor %}
+  {% for i in noAnyEconomyEducationSheetQ2 %}{% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in noAnyEconomyEducationSheetQ2 %}{% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in noAnyEconomyEducationSheetQ2 %}{% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),
+  {% endif %}{% endfor %}
+  {% for i in noAnyEconomyEducationSheetQ2 %}{% if i.0 == 'Tertiary' %}Math.round({{i.1}})
+  {% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var data = [trace1,trace2];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Count'},
+        title: 'Are You Engaged in Any Economic Activity?'
+
+          };
+
+Plotly.newPlot('container011E2', data, layout);
+/////////////////////////////
+
+
+///// What type of Economic activity are you Engaged in?
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in EngagedActivity_NONEQ2 %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in EngagedActivity_privateSectorQ2 %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in EngagedActivity_publicSectorQ2 %} {% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in EngagedActivity_selfEmployedQ2 %} {% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in EngagedActivity_studentQ2 %} {% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in EngagedActivity_OTHERSQ2 %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Not working',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in EngagedActivity_NONEQ2 %}{% if s.0 == 'JHS' %}Math.round({{s.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_privateSectorQ2 %}{% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_publicSectorQ2 %}{% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_selfEmployedQ2 %}{% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_studentQ2 %}{% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_OTHERSQ2 %}{% if i.0 == 'JHS' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Private Sector',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in EngagedActivity_NONEQ2 %}{% if s.0 == 'SHS' %}Math.round({{s.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_privateSectorQ2 %}{% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_publicSectorQ2 %}{% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_selfEmployedQ2 %}{% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_studentQ2 %}{% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_OTHERSQ2 %}{% if i.0 == 'SHS' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Public Sector',
+  type: 'bar',
+    marker: {
+      color: 'black'
+    }
+};
+
+var trace4 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in EngagedActivity_NONEQ2 %}{% if s.0 == 'Post-graduate' %}Math.round({{s.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_privateSectorQ2 %}{% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_publicSectorQ2 %}{% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_selfEmployedQ2 %}{% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_studentQ2 %}{% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_OTHERSQ2 %}{% if i.0 == 'Post-graduate' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Self-employed',
+  type: 'bar',
+    marker: {
+      color: 'yellow'
+    }
+};
+
+
+var trace5 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in EngagedActivity_NONEQ2 %}{% if s.0 == 'Tertiary' %}Math.round({{s.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_privateSectorQ2 %}{% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_publicSectorQ2 %}{% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_selfEmployedQ2 %}{% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_studentQ2 %}{% if i.0 == 'Tertiary' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_OTHERSQ2 %}{% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Student',
+  type: 'bar',
+    marker: {
+      color: 'blue'
+    }
+};
+
+var data = [trace1,trace2,trace3,trace4,trace5];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Count'},
+        title: 'What type of Economic activity are you Engaged in?'
+
+          };
+
+Plotly.newPlot('container021E2', data, layout);
+
+///////////////////////////////////
+
+
+
+// aware_the_easing_restrictions_by_president
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in aterbp_yes %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_yes %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_yes %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_yes %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_yes %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+{% for i in aterbp_no %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_no %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_no %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_no %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_no %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+{% for i in aterbp_indifferent %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_indifferent %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_indifferent %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_indifferent %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in aterbp_indifferent %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+
+var data = [trace1,trace2,trace3];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Count'},
+        title: 'Are you aware of the easing of restrictions by the president?'
+
+          };
+
+Plotly.newPlot('container041E2', data, layout);
+////////////////////////////
+
+
+// feel_safe_in_country
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in terbpcrd_yes %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_yes %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_yes %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_yes %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_yes %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in terbpcrd_no %}{% if i.0 == 'No FORMAL EDUCATION' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_no %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_no %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_no %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_no %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in terbpcrd_indifferent %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_indifferent %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_indifferent %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_indifferent %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in terbpcrd_indifferent %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Count'},
+        title: ""
+
+          };
+Plotly.newPlot('container051E2', data, layout);
+////////////////////////////
+
+
+
+// have_confidence_in_government_handling_risk_covid19
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in hcighrc_yes %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_yes %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_yes %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_yes %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_yes %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in hcighrc_no %}{% if i.0 == 'No FORMAL EDUCATION' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_no %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_no %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_no %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_no %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in hcighrc_indifferent %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_indifferent %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_indifferent %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_indifferent %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hcighrc_indifferent %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Indifference',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Count'},
+        title: "Do you have confidence in how government is handling the risk of covid-19?"
+
+          };
+Plotly.newPlot('container061E2', data, layout);
+////////////////////////////
+
+
+
+
+
+
+// how_would_you_rate_government_handling_covid19
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in hwyrghc_g %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_g %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_g %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_g %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_g %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Good',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in hwyrghc_f %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_f %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_f %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_f %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_f %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Fair',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in hwyrghc_vg %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_vg %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_vg %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_vg %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_vg %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Very Good',
+  type: 'bar',
+    marker: {
+      color: '#67f'
+    }
+};
+
+
+var trace4 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in hwyrghc_ex %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_ex %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_ex %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_ex %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_ex %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Excellent',
+  type: 'bar',
+    marker: {
+      color: 'indigo'
+    }
+};
+
+
+var trace5 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in hwyrghc_p %}{% if i.0 == 'No formal education' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_p %} {% if i.0 == 'JHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_p %} {% if i.0 == 'SHS' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_p %} {% if i.0 == 'Post-graduate' %}Math.round({{i.1}}),{% endif %}{% endfor %}
+{% for i in hwyrghc_p %} {% if i.0 == 'Tertiary' %}Math.round({{i.1}}){% endif %}{% endfor %}],
+  name: 'Poor',
+  type: 'bar',
+    marker: {
+      color: 'voilet'
+    }
+};
+
+
+var data = [trace1,trace2,trace3,trace4,trace5];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Count'},
+        title: ""
+
+          };
+Plotly.newPlot('container071E2', data, layout);
+////////////////////////////
+
+
+
+
+
+
+</script>
+
+{% endblock js %}

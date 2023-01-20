@@ -1,0 +1,333 @@
+
+<!-- counts div -->
+  <div class=" col-md-8 p-0">
+    <div class="card bg-c-blue update-card">
+      <div class="card-block">
+        <div class="row align-items-end">
+          <div class="col-12">
+            <h4 class="text-white m-b-0">{% if otherFields.0 != "Empty" %}{{otherFields.0}}{% else %}National{% endif %}
+              {% if otherFields.1 != "Empty" %}/{{otherFields.1}}{% endif %}</h4>
+              <div class="row">
+              <h5 class="text-white m-b-0 col-4">Female Responses: {{QuestionsMaleFemale.0.id__count}}</h5>
+              <h5 class="text-white m-b-0 col-4">Male Responses: {{QuestionsMaleFemale.1.id__count}}</h5>
+            <h5 class="text-white m-b-0 col-4">Total Responses: {{totalResponse_questionnaire}}</h5>
+          </div>
+        </div>
+          <!-- <div class="col-4 text-right">
+            <canvas id="update-chart-1" height="50"></canvas>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- end -->
+
+<!-- Are You Engaged in Any Economic Activity? -->
+  <div class=" col-md-8  p-0">
+      <div id="container011E"></div>
+  </div>
+<!-- end -->
+
+<!-- What type of Economic activity are you Engaged in? -->
+<div class="col-md-8 p-0">
+      <div id="container021E"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Opinion</strong></h5>
+<!--Do you think it is a call in the right direction?-->
+<div class="col-md-8 p-0">
+  <div id="container041E"></div>
+</div>
+<!-- end -->
+
+<h5><strong>Awareness</strong></h5>
+<!-- Are you aware of the suspension of the referendum?-->
+<div class="col-md-8 p-0">
+  <div id="container051E"></div>
+</div>
+<!-- end -->
+
+
+{% block js %}  
+
+<script>
+  // ///////Are You Engaged in Any Economic Activity?
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+{% for i in yesAnyEconomyEducationSheetQ %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in yesAnyEconomyEducationSheetQ %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in yesAnyEconomyEducationSheetQ %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in yesAnyEconomyEducationSheetQ %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in yesAnyEconomyEducationSheetQ %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100)
+{% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in noAnyEconomyEducationSheetQ %}{% if s.0 == 'NO FORMAL EDUCATION' %}Math.round(({{s.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in noAnyEconomyEducationSheetQ %}{% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in noAnyEconomyEducationSheetQ %}{% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in noAnyEconomyEducationSheetQ %}{% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),
+  {% endif %}{% endfor %}
+  {% for i in noAnyEconomyEducationSheetQ %}{% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100)
+  {% endif %}{% endfor %}
+],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var data = [trace1,trace2];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'Are You Engaged in Any Economic Activity?'
+
+          };
+
+Plotly.newPlot('container011E', data, layout);
+/////////////////////////////
+
+
+///// What type of Economic activity are you Engaged in?
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in EngagedActivity_NONEQ %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in EngagedActivity_privateSectorQ %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in EngagedActivity_publicSectorQ %} {% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in EngagedActivity_selfEmployedQ %} {% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in EngagedActivity_studentQ %} {% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in EngagedActivity_OTHERSQ %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Not working',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in EngagedActivity_NONEQ %}{% if s.0 == 'JHS' %}Math.round(({{s.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_privateSectorQ %}{% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_publicSectorQ %}{% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_selfEmployedQ %}{% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_studentQ %}{% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_OTHERSQ %}{% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Private Sector',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in EngagedActivity_NONEQ %}{% if s.0 == 'SHS' %}Math.round(({{s.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_privateSectorQ %}{% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_publicSectorQ %}{% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_selfEmployedQ %}{% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_studentQ %}{% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_OTHERSQ %}{% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Public Sector',
+  type: 'bar',
+    marker: {
+      color: 'black'
+    }
+};
+
+var trace4 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in EngagedActivity_NONEQ %}{% if s.0 == 'POST GRADUATE' %}Math.round(({{s.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_privateSectorQ %}{% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_publicSectorQ %}{% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_selfEmployedQ %}{% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_studentQ %}{% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_OTHERSQ %}{% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Self-employed',
+  type: 'bar',
+    marker: {
+      color: 'yellow'
+    }
+};
+
+
+var trace5 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for s in EngagedActivity_NONEQ %}{% if s.0 == 'TERTIARY' %}Math.round(({{s.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_privateSectorQ %}{% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_publicSectorQ %}{% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_selfEmployedQ %}{% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_studentQ %}{% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+  {% for i in EngagedActivity_OTHERSQ %}{% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}],
+  name: 'Student',
+  type: 'bar',
+    marker: {
+      color: 'blue'
+    }
+};
+
+var data = [trace1,trace2,trace3,trace4,trace5];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'What type of Economic activity are you Engaged in?'
+
+          };
+
+Plotly.newPlot('container021E', data, layout);
+
+///////////////////////////////////
+
+
+
+// Do you think it is a call in the right direction?
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in do_u_think_is_ryt_direction_yes %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_yes %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_yes %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_yes %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_yes %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}
+],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+{% for i in do_u_think_is_ryt_direction_no %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_no %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_no %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_no %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_no %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+{% for i in do_u_think_is_ryt_direction_indifference %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_indifference %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_indifference %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_indifference %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in do_u_think_is_ryt_direction_indifference %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}],
+  name: 'Indifferent',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+
+var data = [trace1,trace2,trace3];
+
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Percentage (%)'},
+        title: 'Do you think it is a call in the right direction?'
+
+          };
+
+Plotly.newPlot('container041E', data, layout);
+////////////////////////////
+
+
+// Are you aware of the suspension of the referendum?
+var trace1 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in aware_of_suspension_of_the_referendum_yes %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_yes %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_yes %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_yes %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_yes %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}],
+  name: 'Yes',
+  type: 'bar',
+    marker: {
+      color: 'green'
+    }
+    }
+  
+var trace2 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in aware_of_suspension_of_the_referendum_no %}{% if i.0 == 'No FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_no %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_no %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_no %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_no %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}],
+  name: 'No',
+  type: 'bar',
+    marker: {
+      color: 'red'
+    }
+};
+
+var trace3 = {
+  x: ['No formal Education','JHS','SHS','Post-graduate','Tertiary'],
+  y: [
+  {% for i in aware_of_suspension_of_the_referendum_indifference %}{% if i.0 == 'NO FORMAL EDUCATION' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_indifference %} {% if i.0 == 'JHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_indifference %} {% if i.0 == 'SHS' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_indifference %} {% if i.0 == 'POST GRADUATE' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100),{% endif %}{% endfor %}
+{% for i in aware_of_suspension_of_the_referendum_indifference %} {% if i.0 == 'TERTIARY' %}Math.round(({{i.1}}/{{totalResponse_questionnaire}})*100){% endif %}{% endfor %}],
+  name: 'Indifference',
+  type: 'bar',
+    marker: {
+      color: 'gray'
+    }
+};
+
+var data = [trace1,trace2,trace3];
+var layout = {
+        barmode: 'stack',
+        xaxis: {title: 'What is your level of education?'},
+       yaxis: {title: 'Percentage (%)'},
+        title: "Are you aware of the suspension of the referendum?"
+
+          };
+Plotly.newPlot('container051E', data, layout);
+////////////////////////////
+
+
+
+
+
+
+</script>
+
+{% endblock js %}
